@@ -7,3 +7,4 @@ node_modules
 /stylesheets/*
 /dist/
 .publish
+npm-debug.log
