@@ -97,40 +97,18 @@ $light-gray: #ccc;
             margin-left: 0;
             list-style-type: none;
             
-            li {
-                a {/*
-                    span.select:before {
-                        color: pink;
-                        content: "\f126";
-                        font-family: "foundation-icons";
-                        font-style: normal;
-                        font-weight: normal;
-                        font-variant: normal;
-                        text-transform: none;
-                        line-height: 1;
-                        -webkit-font-smoothing: antialiased;
-                        display: inline-block;
-                        text-decoration: inherit;
-                        border: 1px solid red;
-                        padding: 0.45rem 0.75rem;
-                        }
-
-                    &:hover span.select:before {
-                        color: red;
-                        }*/
-                    } 
-                }
-            
-            
+            li {}
             }
         }
     
 }
 
 .split.button {
+  width: 100%;
   &.select {
     span {
       color: transparent;
+      border: 0;
       &:after {
         border: 0;
         font-family: "foundation-icons";
@@ -143,7 +121,7 @@ $light-gray: #ccc;
       }
     &:hover {
       span {
-        color: $primary-color;
+        color: #333;
         @transition(.5s)
         }
       }
@@ -157,7 +135,14 @@ $light-gray: #ccc;
   }
 }
 
-
+#footer {
+  p {
+    i { 
+        font-size: 1rem;
+        margin-right: 0.5rem;
+        }
+    }
+}
 
 
 
