@@ -1,0 +1,164 @@
+/* Type
+*/
+
+@font-face {
+    font-family: 'Raleway Heavy';
+    font-weight: 900;
+    font-style: normal;
+    src: local('Raleway Heavy'), url('../fonts/Raleway/Raleway-Heavy.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Raleway Medium';
+    font-weight: 500;
+    font-style: normal;
+    src: local('Raleway Medium'), url('../fonts/Raleway/Raleway-Medium.ttf') format('truetype');
+}
+
+@import "../fonts/foundation-icons/foundation-icons.css";
+@import "settings";
+@import "foundation";
+
+/* Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+*/
+
+/* Colours
+*/
+
+$orange: #f34f2c;
+$light-gray: #ccc;
+
+/* Mixins
+*/
+
+@mixin transition($time) {
+   -webkit-transition: $time;
+      -moz-transition: $time;
+       -ms-transition: $time;
+           transition: $time;
+}
+
+/* Layout
+*/
+
+#header {
+    & > div *:last-child {
+        padding-bottom: 1rem;
+        margin-bottom: 0;
+        background: transparent url('../images/slashbg.png') repeat-x 0 bottom;
+        }
+}
+
+#main {
+    .row {
+        padding: 1rem 0 0;
+        }
+        
+    #progress { margin-bottom: 0; }
+        
+    #answer {
+        ul {
+            margin-left: 0;
+            list-style-type: none;
+            
+            li {
+                a {/*
+                    span.select:before {
+                        color: pink;
+                        content: "\f126";
+                        font-family: "foundation-icons";
+                        font-style: normal;
+                        font-weight: normal;
+                        font-variant: normal;
+                        text-transform: none;
+                        line-height: 1;
+                        -webkit-font-smoothing: antialiased;
+                        display: inline-block;
+                        text-decoration: inherit;
+                        border: 1px solid red;
+                        padding: 0.45rem 0.75rem;
+                        }
+
+                    &:hover span.select:before {
+                        color: red;
+                        }*/
+                    } 
+                }
+            
+            
+            }
+        }
+    
+}
+
+.split.button {
+  &.select {
+    span {
+      color: transparent;
+      &:after {
+        border: 0;
+        font-family: "foundation-icons";
+        content: "\f126";
+        display: inline-block;
+        font-size: 2rem;
+        line-height: 0.25rem;
+        margin-left: -0.7rem;
+        }
+      }
+    &:hover {
+      span {
+        color: $primary-color;
+        @transition(.5s)
+        }
+      }
+  }  
+
+  &.left-icon {
+    text-align: left;
+    padding-left: 4.0625rem;
+    padding-right: 2rem;
+    span { left: 0; }
+  }
+}
+
+
+
+
+
+
