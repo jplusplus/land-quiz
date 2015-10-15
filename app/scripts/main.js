@@ -5,21 +5,38 @@
 $(document).ready(function() {    
   var jsonPath = '/data/questions.json';
   $.getJSON( jsonPath, function( data ) {
-    console.log(data.length);
+    console.log(data);
+    console.log(Object.keys(data).length);
     // go through all questions
     $.each( data, function( key, c ) {
-      var title = $('<h2>').text(c.question);
+
+      // create and fill the question div
+      var title = $('<h3>').text(c.question);
       var explanation = $(marked(c.explanation));
+
+      var questionContainer = 
+        //$('<div>').attr('id', 'question-' + c.id)
+        $('<div>')
+        .attr('id', 'question')
+        .addClass('row')
+        .append(title, explanation).appendTo('#questions');
+
       // create and populate answer list
-      var answers = $('<ul class="answers">');
+
+      var answers = $('<ul>');
       $.each(c.answers, function(index, v) {
-        $('<li class="answer">').text(v).wrapInner('button')
+        $('<a>')
+          .text(v)
+          .attr('class', 'select left-icon button split medium secondary no-pip')
+          .wrapInner('li')
           .appendTo(answers);
       });
-      // create and fill each question div
-      $('<div>').attr('id', 'question-' + c.id)
-        .addClass('hero-unit').addClass('question')
-        .append(title, explanation, answers).appendTo('#questions');
+      var innerAnswerDiv = $('<div class="small 12-columns">')
+        .append(answers);
+      var answerContainer = $('<div id="answers" class="row">')
+        .append(innerAnswerDiv)
+        .appendTo('#questions');
+
     });
   });
 });
