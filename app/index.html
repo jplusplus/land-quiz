@@ -33,26 +33,25 @@
 
     <section id="main">
       <div id="questions"></div>
+
       <div id="question" class="row">
         <div class="small-12 columns">
-          <p id="progress">Fråga 1 av 18</p>
-          <h3>Säger du flakmoped/moppe, lastmoped/moppe eller packmoped/moppe?</h3>
+          <p id="progress">Fråga <span id="question-current">1</span> av <span id="question-total">18</span></p>
+          <h3 id="question-title">Säger du flakmoped/moppe, lastmoped/moppe eller packmoped/moppe?</h3>
+          <h4 id="question-explanation">Säger du flakmoped/moppe, lastmoped/moppe eller packmoped/moppe?</h4>
         </div>
       </div>
 
-      <div id="answers" class="row">
-        <div class="small-12 columns">
-          <ul>
-            <li><a class="select left-icon button split medium secondary no-pip" href="#"><span></span> Flakmoped</a></li>
-            <li><a class="select left-icon button split medium secondary no-pip" href="#"><span></span> Lastmoped</a></li>
-            <li><a class="select left-icon button split medium secondary no-pip" href="#"><span></span> Packmoped</a></li>
+      <div class="row">
+        <div id="question-answers" class="small-12 columns">
+          <ul id="answer-container">
           </ul>
         </div>
       </div>
 
       <div class="row">
         <ul class="pagination">
-          <li class="arrow"><a href="#">Föregående fråga &raquo;</a></li>
+          <li class="arrow"><a id="next-button" href="#">Föregående fråga &raquo;</a></li>
         </ul>
       </div>
     </section>

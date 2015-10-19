@@ -2,46 +2,65 @@
 /*global document */
 /*global marked */
 
-/*
+var questions = [];
+var answerLog = {};
+var currentQuestionId;
+
+function updateQuestion (q) {
+  currentQuestionId = q.id;
+  // Update answer counter
+  $('#question-current').text(Object.keys(answerLog).length + 1);
+  // Fill the elements with the new content
+  $('#question-title').text(q.title);
+  $('#question-explanation').html(marked(q.explanation));
+
+  // create and populate answer list
+  $('#answer-container').empty();
+  $.each(q.answers, function(index, v) {
+    $('<a>', {
+      id: 'answer-' + index,
+      class: 'select left-icon button split medium secondary no-pip',
+    })
+    .html('<span></span> ' + v)
+    .wrapInner('<li>')
+    .appendTo('#answer-container');
+  });
+}
+
 $(document).ready(function() {    
   var jsonPath = '/data/questions.json';
   $.getJSON( jsonPath, function( data ) {
-    console.log(data);
-    console.log(Object.keys(data).length);
-    // go through all questions
+    // go through all questions and store them in the array
     $.each( data, function( key, c ) {
-
-      // create and fill the question div
-      var title = $('<h3>').text(c.question);
-      var explanation = $(marked(c.explanation));
-
-      var questionContainer = 
-        //$('<div>').attr('id', 'question-' + c.id)
-        $('<div>')
-        .attr('id', 'question')
-        .addClass('row')
-        .append(title, explanation).appendTo('#questions');
-
-      // create and populate answer list
-
-      var answers = $('<ul>');
-      $.each(c.answers, function(index, v) {
-        $('<a>')
-          .text(v)
-          .attr('class', 'select left-icon button split medium secondary no-pip')
-          .wrapInner('li')
-          .appendTo(answers);
-      });
-      var innerAnswerDiv = $('<div class="small 12-columns">')
-        .append(answers);
-      var answerContainer = $('<div id="answers" class="row">')
-        .append(innerAnswerDiv)
-        .appendTo('#questions');
-
+      var q = {};
+      q.id = c.id;
+      q.title = c.question;
+      q.explanation = c.explanation;
+      q.answers = c.answers;
+      questions.push(q);
     });
+    $('#questions-total').text = questions.length;
+    $('#questions-current').text = "1";
+    updateQuestion(questions[0]);
   });
 });
-*/
+
+$('#next-button').click( function () {
+  // TODO: Make sure we have a selected answer before going on
+  // Record the current answer 
+  answerLog[currentQuestionId] = "0";
+  console.log(answerLog);
+
+  // Remove last question from the questions array and present the next one
+  questions.shift();
+  var q = questions[0];
+  if (typeof q != 'undefined') {
+    updateQuestion(q);
+  } else {
+    console.log("Game over!");
+  }
+
+});
 
 // init Foundation
 // $(document).foundation();
