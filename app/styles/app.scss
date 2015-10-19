@@ -59,6 +59,7 @@ $light-gray: #ccc;
                 list-style-type: none;
                 
                 li {}
+                li.selected a { color: #E0582B; }
             }
         p.pagination a {
             background-color: rgba(0, 0, 0, 0);
