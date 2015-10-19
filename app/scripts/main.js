@@ -47,6 +47,7 @@ $(document).ready(function() {
 
 $('#next-button').click( function () {
   // TODO: Make sure we have a selected answer before going on
+  
   // Record the current answer 
   answerLog[currentQuestionId] = "0";
   console.log(answerLog);
