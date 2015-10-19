@@ -15,7 +15,7 @@ function updateQuestion (q) {
   $('#question-explanation').html(marked(q.explanation));
 
   // create and populate answer list
-  $('#answer-container').empty();
+  $('#answers').empty();
   $.each(q.answers, function(index, v) {
     $('<a>', {
       id: 'answer-' + index,
@@ -23,7 +23,7 @@ function updateQuestion (q) {
     })
     .html('<span></span> ' + v)
     .wrapInner('<li>')
-    .appendTo('#answer-container');
+    .appendTo('#answers');
   });
 }
 
