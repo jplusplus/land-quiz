@@ -35,7 +35,7 @@ function updateQuestion (q) {
 
 
 $(document).ready(function() {    
-  var jsonPath = '/data/questions.json';
+  var jsonPath = 'data/questions.json';
   $.getJSON( jsonPath, function( data ) {
     // Go through all questions and store them in the array
     $.each(data, function( key, c ) {
@@ -72,4 +72,4 @@ $(document).ready(function() {
 
 
 // init Foundation
-$(document).foundation();
+// $(document).foundation();
