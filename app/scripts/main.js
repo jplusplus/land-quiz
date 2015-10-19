@@ -2,6 +2,7 @@
 /*global document */
 /*global marked */
 
+/*
 $(document).ready(function() {    
   var jsonPath = '/data/questions.json';
   $.getJSON( jsonPath, function( data ) {
@@ -40,6 +41,7 @@ $(document).ready(function() {
     });
   });
 });
+*/
 
 // init Foundation
 // $(document).foundation();
