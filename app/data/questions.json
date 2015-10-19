@@ -1,0 +1,272 @@
+{
+  "1": {
+    "answers": [
+      "Sovde",
+      "Sov"
+    ],
+    "explanation": "S\u00e4ger du **sovde** eller **sov**?",
+    "id": 1,
+    "query": [
+      "sovde",
+      "NOT sovde"
+    ],
+    "question": "Sov eller sovde?",
+    "target": "DB"
+  },
+  "11": {
+    "answers": [
+      "Tipsrunda",
+      "Tipspromenad",
+      "Po\u00e4ngpromenad"
+    ],
+    "explanation": "Vad kallar du en promenad d\u00e4r du svarar 1, X eller 2 p\u00e5 fr\u00e5gor?",
+    "id": 11,
+    "query": [
+      "tipsrunda",
+      "tipspromenad",
+      "po\u00e4ngpromenad"
+    ],
+    "question": "Fr\u00e5gesport",
+    "target": "DB"
+  },
+  "12": {
+    "answers": [
+      "Bjussa",
+      "Bjucka",
+      "Bjuppa/Bjubba"
+    ],
+    "explanation": "Vilket av f\u00f6ljande slang f\u00f6r **att bjuda** f\u00f6redrar du?",
+    "id": 12,
+    "query": [
+      "bjussa",
+      "bjucka",
+      "bjuppa OR bjubba"
+    ],
+    "question": "Slang f\u00f6r bjuda",
+    "target": "DB"
+  },
+  "13": {
+    "answers": [
+      "\u00c4ppelpaj",
+      "\u00c4pplepaj"
+    ],
+    "explanation": "S\u00e4ger du \u00e4pp**el**paj eller \u00e4pp**le**paj?",
+    "id": 13,
+    "query": [
+      "\u00e4ppelpaj",
+      "\u00e4pplepaj"
+    ],
+    "question": "\u00c4ppelpaj eller \u00e4pplepaj?",
+    "target": "DB"
+  },
+  "15": {
+    "answers": [
+      "Bagagelucka",
+      "Baklucka",
+      "Koffert",
+      "Skuff",
+      "Trunk"
+    ],
+    "explanation": "Vad kallar du f\u00f6rvaringsutrymmet p\u00e5 bilar?",
+    "id": 15,
+    "query": [
+      "bagagelucka OR bagageluckan",
+      "baklucka OR bakluckan",
+      "koffert OR kofferten",
+      "skuff OR skuffen",
+      "trunken"
+    ],
+    "question": "Bilens f\u00f6rvaringsutrymme",
+    "target": "DB"
+  },
+  "16": {
+    "answers": [
+      "Ja",
+      "Nej"
+    ],
+    "explanation": "Har termen moffa anv\u00e4nts i trakten du kommer ifr\u00e5n (f\u00f6r att ben\u00e4mna kraftfullt \u00e4tande)?",
+    "id": 16,
+    "query": [
+      "moffade OR moffat",
+      "NOT moffade OR moffat"
+    ],
+    "question": "Moffa",
+    "target": "DB"
+  },
+  "17": {
+    "answers": [
+      "Gympan",
+      "Jumpan"
+    ],
+    "explanation": "Vad kallar du gymnastiklektionen?",
+    "id": 17,
+    "query": [
+      "gympa OR gympan",
+      "jumpa OR jumpan"
+    ],
+    "question": "Gymnastik",
+    "target": "DB"
+  },
+  "18": {
+    "answers": [
+      "Termobyxor",
+      "T\u00e4ckbyxor"
+    ],
+    "explanation": "Vad kallar du tjocka stoppade byxor som anv\u00e4nds vid vinterlek?",
+    "id": 18,
+    "query": [
+      "termobyxor OR termobyxorna",
+      "t\u00e4ckbyxor OR t\u00e4ckbyxorna"
+    ],
+    "question": "Varma byxor",
+    "target": "DB"
+  },
+  "19": {
+    "answers": [
+      "Prommis",
+      "Promenix"
+    ],
+    "explanation": "Vilket slang f\u00f6redrar du?",
+    "id": 19,
+    "query": [
+      "prommis",
+      "promenix"
+    ],
+    "question": "Promenad",
+    "target": "DB"
+  },
+  "20": {
+    "answers": [
+      "Bamba",
+      "Matan",
+      "Matsalen"
+    ],
+    "explanation": "Vad kallar/kallade du platsen i skolan d\u00e4r det \u00e5ts?",
+    "id": 20,
+    "query": [
+      "bamba",
+      "matan",
+      "matsalen"
+    ],
+    "question": "Skolmaten",
+    "target": "DB"
+  },
+  "21": {
+    "answers": [
+      "Ostb\u00e5gar",
+      "Ostkrokar"
+    ],
+    "explanation": "Ostb\u00e5gar eller ostkrokar?",
+    "id": 21,
+    "query": [
+      "ostb\u00e5gar",
+      "ostkrokar"
+    ],
+    "question": "Snacks",
+    "target": "DB"
+  },
+  "22": {
+    "answers": [
+      "Ja",
+      "Nej"
+    ],
+    "explanation": "Kallar du n\u00e5gonsin din kusin f\u00f6r **kusse**?",
+    "id": 22,
+    "query": [
+      "kusse",
+      "NOT kusse"
+    ],
+    "question": "Kusiner",
+    "target": "DB"
+  },
+  "4": {
+    "answers": [
+      "Ja",
+      "Nej"
+    ],
+    "explanation": "Har det under din uppv\u00e4xt ibland pratats om att anv\u00e4nda en **rulleb\u00f6r**?",
+    "id": 4,
+    "query": [
+      "rulleb\u00f6r",
+      "NOT rulleb\u00f6r"
+    ],
+    "question": "Skottk\u00e4rra",
+    "target": "DB"
+  },
+  "5": {
+    "answers": [
+      "N\u00e4stkusin",
+      "Trem\u00e4nning",
+      "Sm\u00e5kusin",
+      "Syssling"
+    ],
+    "explanation": "Vad kallar du dina f\u00f6r\u00e4ldrars kusiners barn?",
+    "id": 5,
+    "query": [
+      "n\u00e4stkusin",
+      "trem\u00e4nning",
+      "sm\u00e5kusin",
+      "syssling"
+    ],
+    "question": "Sl\u00e4ktskap",
+    "target": "DB"
+  },
+  "6": {
+    "answers": [
+      "Gr\u00e4ddbullar",
+      "Mums-mums"
+    ],
+    "explanation": "Kallar du det **gr\u00e4ddbullar** eller **mums-mums**?",
+    "id": 6,
+    "query": [
+      "gr\u00e4ddbullar",
+      "NOT gr\u00e4ddbullar"
+    ],
+    "question": "S\u00f6tsaker",
+    "target": "DB"
+  },
+  "8": {
+    "answers": [
+      "Trasigt",
+      "S\u00f6ndrigt"
+    ],
+    "explanation": "\u00c4r n\u00e5got **trasigt** eller **s\u00f6ndrigt**?",
+    "id": 8,
+    "query": [
+      "NOT s\u00f6ndrig",
+      "s\u00f6ndrig"
+    ],
+    "question": "F\u00f6rst\u00f6relse",
+    "target": "DB"
+  },
+  "9": {
+    "answers": [
+      "F\u00e4rskpotatis",
+      "Nypotatis"
+    ],
+    "explanation": "Kallar du den nypotatis eller f\u00e4rskpotatis?",
+    "id": 9,
+    "query": [
+      "f\u00e4rskpotatis",
+      "nypotatis"
+    ],
+    "question": "Potatis",
+    "target": "DB"
+  },
+  "99": {
+    "answers": [
+      "Flakmoped",
+      "Lastmoped",
+      "Packmoped"
+    ],
+    "explanation": "S\u00e4ger du **flak**moped/moppe, **last**moped/moppe eller **pack**moped/moppe?",
+    "id": 99,
+    "query": [
+      "flakmoped",
+      "lastmoped",
+      "packmoped"
+    ],
+    "question": "Mopeder",
+    "target": "just fishing"
+  }
+}
