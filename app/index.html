@@ -32,29 +32,52 @@
     </header>
 
     <section id="main">
-      <div id="questions"></div>
-      <div id="question" class="row">
-        <div class="small-12 columns">
-          <p id="progress">Fråga 1 av 18</p>
-          <h3>Säger du flakmoped/moppe, lastmoped/moppe eller packmoped/moppe?</h3>
-        </div>
-      </div>
-
-      <div id="answers" class="row">
-        <div class="small-12 columns">
-          <ul>
-            <li><a class="select left-icon button split medium secondary no-pip" href="#"><span></span> Flakmoped</a></li>
-            <li><a class="select left-icon button split medium secondary no-pip" href="#"><span></span> Lastmoped</a></li>
-            <li><a class="select left-icon button split medium secondary no-pip" href="#"><span></span> Packmoped</a></li>
-          </ul>
-        </div>
-      </div>
-
+      <div class="question-card"></div>
       <div class="row">
-        <ul class="pagination">
-          <li class="arrow"><a href="#">Föregående fråga &raquo;</a></li>
-        </ul>
+        <div id="question-card-1" class="question-card small-12 columns">
+          <p class="quiz-progress">Fråga 1 av 18</p>
+          <h3 class="title">Säger du flakmoped/moppe, lastmoped/moppe eller packmoped/moppe?</h3>
+          <p class="subtitle">Lorem ipsum</p>
+
+          <ul class="answers">
+            <li><a class="option left-icon button split medium secondary no-pip" href="#"><span></span> Flakmoped</a></li>
+            <li><a class="option left-icon button split medium secondary no-pip" href="#"><span></span> Lastmoped</a></li>
+            <li><a class="option left-icon button split medium secondary no-pip" href="#"><span></span> Packmoped</a></li>
+          </ul>
+
+          <p class="pagination">
+            <a href="#">Föregående fråga &raquo;</a>
+          </p>
+        </div><!-- /question-card -->
       </div>
+      
+      <!-- HTML to use when there is an answer to show -->
+      
+      <div class="row">
+        <div class="answer-card medium-4 small-12 columns">
+          <h5 class="title-answer">About your answer to the previous question....</h5>
+          <p class="map-answer"><img src="http://placehold.it/350x150" alt="map"></p>
+          <p class="share-answer">Share this: <a href="#"><i class="fi-social-twitter"></i> Twitter</a>, <a href="#"><i class="fi-social-facebook"></i> Facebook</a> </p>
+        </div>
+        <div id="question-card-1" class="question-card medium-8 small-12 columns">
+          <p class="quiz-progress">Fråga 1 av 18</p>
+          <h3 class="title">Säger du flakmoped/moppe, lastmoped/moppe eller packmoped/moppe?</h3>
+          <p class="subtitle">Lorem ipsum</p>
+
+          <ul class=" answers">
+            <li><a class="option left-icon button split medium secondary no-pip" href="#"><span></span> Flakmoped</a></li>
+            <li><a class="option left-icon button split medium secondary no-pip" href="#"><span></span> Lastmoped</a></li>
+            <li><a class="option left-icon button split medium secondary no-pip" href="#"><span></span> Packmoped</a></li>
+          </ul>
+
+          <p class="pagination">
+            <a href="#">Föregående fråga &raquo;</a>
+          </p>
+        </div><!-- /question-card -->
+      </div>
+      
+      
+      
     </section>
 
     <footer id="footer" class="row">
