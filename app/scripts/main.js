@@ -19,7 +19,7 @@ function updateQuestion (q) {
   $.each(q.answers, function(index, v) {
     var $li = $('<li></li>').attr('id', 'answer-' + index);
     $('<a>', {
-      class: 'select left-icon button split medium secondary no-pip',
+      class: 'select left-icon button split medium no-pip',
     })
     .html('<span></span> ' + v)
     .appendTo($li);

@@ -9,10 +9,21 @@
 }
 
 @font-face {
-    font-family: 'Raleway Medium';
-    font-weight: 500;
+    font-family: 'Raleway SemiBold';
+    font-weight: 600;
     font-style: normal;
-    src: local('Raleway Medium'), url('../fonts/Raleway/Raleway-Medium.ttf') format('truetype');
+    src: local('Raleway SemiBold'), url('../fonts/Raleway/Raleway-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'foundation-icons';
+  src: url('../fonts/foundation-icons/foundation-icons.eot');
+  src: url('../fonts/foundation-icons/foundation-icons.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/foundation-icons/foundation-icons.woff') format('woff'),
+       url('../fonts/foundation-icons/foundation-icons.ttf') format('truetype'),
+       url('../fonts/foundation-icons/foundation-icons.svg#fontcustom') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @import "../fonts/foundation-icons/foundation-icons.css";
@@ -60,6 +71,36 @@ $light-gray: #ccc;
                 
                 li {}
                 li.selected a { color: #E0582B; }
+                
+                
+                .split.button {
+                  width: 100%;
+                  span {
+                    color: transparent;
+                    border: 0;
+                    &:after {
+                      border: 0;
+                      font-family: 'foundation-icons';
+                      content: "\f126";
+                      display: inline-block;
+                      font-size: 2rem;
+                      line-height: 0.25rem;
+                      margin-left: -0.7rem;
+                      }
+                    }
+                  &:hover {
+                    span {
+                      @include transition(color .5s ease-out);
+                      }
+                    }
+
+                  &.left-icon {
+                    text-align: left;
+                    padding-left: 4.0625rem;
+                    padding-right: 2rem;
+                    span { left: 0; }
+                  }
+                }
             }
         p.pagination a {
             background-color: rgba(0, 0, 0, 0);
@@ -74,38 +115,6 @@ $light-gray: #ccc;
             }
         }
     
-}
-
-.split.button {
-  width: 100%;
-  &.option {
-    span {
-      color: transparent;
-      border: 0;
-      &:after {
-        border: 0;
-        font-family: "foundation-icons";
-        content: "\f126";
-        display: inline-block;
-        font-size: 2rem;
-        line-height: 0.25rem;
-        margin-left: -0.7rem;
-        }
-      }
-    &:hover {
-      span {
-        color: #333;
-        @include transition(color .5s ease-out);
-        }
-      }
-  }  
-
-  &.left-icon {
-    text-align: left;
-    padding-left: 4.0625rem;
-    padding-right: 2rem;
-    span { left: 0; }
-  }
 }
 
 #footer {

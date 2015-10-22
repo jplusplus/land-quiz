@@ -94,7 +94,7 @@ $font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Roboto, Arial, 
 // We use these to define default font weights
 // $font-weight-normal: normal;
 // $font-weight-bold: bold;
-$font-weight-medium: 500;
+$font-weight-semibold: 600;
 $font-weight-heavy: 900;
 
 // $white       : #FFFFFF;
@@ -129,7 +129,7 @@ $primary-color: #f34f2c;
 // $body-bg: $white;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
-$body-font-weight: $font-weight-medium;
+$body-font-weight: $font-weight-semibold;
 $title-font-weight: $font-weight-heavy;
 // $body-font-style: normal;
 
@@ -251,7 +251,7 @@ $header-font-weight: $title-font-weight;
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
-// $paragraph-font-weight: $font-weight-normal;
+$paragraph-font-weight: $font-weight-semibold;
 // $paragraph-font-size: 1rem;
 // $paragraph-line-height: 1.6;
 // $paragraph-margin-bottom: rem-calc(20);
@@ -460,7 +460,7 @@ $header-font-weight: $title-font-weight;
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
 // $button-font-lrg: rem-calc(20);
-// $button-font-weight: $font-weight-normal;
+$button-font-weight: $font-weight-semibold;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
@@ -469,7 +469,7 @@ $header-font-weight: $title-font-weight;
 // We use these to control button border styles.
 // $button-border-width: 0;
 // $button-border-style: solid;
-// $button-bg-color: $primary-color;
+$button-bg-color: #ef7c64;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 // $button-border-color: $button-bg-hover;
 // $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
