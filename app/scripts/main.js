@@ -11,8 +11,8 @@ function updateQuestion (q) {
   // Update answer counter
   $('#question-current').text(Object.keys(answerLog).length + 1);
   // Fill the elements with the new content
-  $('#question-title').text(q.question);
-  $('#question-explanation').html(marked(q.explanation));
+  //$('#question-title').text(q.question);
+  $('#question-explanation').html(marked('### ' + q.explanation));
 
   // create and populate answer list
   $('#answers').empty();
