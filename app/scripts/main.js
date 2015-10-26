@@ -6,13 +6,25 @@ var questions = [];
 var answerLog = {};
 var currentQuestionId;
 
+
+// Disable Markdown paragraphs
+// https://stackoverflow.com/questions/27663203/markdown-in-js-without-enclosing-p/29559116#comment47272088_29559116
+var inlineRenderer = new marked.Renderer();
+inlineRenderer.paragraph = function(text) {
+    return text + '\n';
+};
+marked.setOptions({
+  renderer: inlineRenderer,
+});
+
+
 function updateQuestion (q) {
   currentQuestionId = parseInt(q.id);
   // Update answer counter
   $('#question-current').text(Object.keys(answerLog).length + 1);
   // Fill the elements with the new content
   //$('#question-title').text(q.question);
-  $('#question-explanation').html(marked('### ' + q.explanation));
+  $('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
 
   // create and populate answer list
   $('#answers').empty();
