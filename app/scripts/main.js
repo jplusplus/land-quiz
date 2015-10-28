@@ -57,6 +57,7 @@ $(document).ready(function() {
     $('#questions-current').text = "1";
     updateQuestion(questions[0]);
   });
+
   $('#next-button').click( function () {
     if ($('#answers li.selected').length == 0) {
       // Make sure we have a selected answer before going on
@@ -79,6 +80,19 @@ $(document).ready(function() {
           console.log(data);
       });
     }
+  });
+
+  $('#results-button').click( function () {
+    $.each( questions, function(key, c) {
+      // give either 0 or 1 answer randomly
+      answerLog[key] = Math.round(Math.random()).toString();
+    });
+    var posting = $.post("http://dialektapi.jplusplus.se/oracle/predict/", answerLog);
+    posting.done(function(data) {
+        console.log("Data Loaded: ");
+        console.log(data);
+    });
+
   });
 });
 
