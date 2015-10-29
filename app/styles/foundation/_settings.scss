@@ -93,7 +93,7 @@ $font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Roboto, Arial, 
 
 // We use these to define default font weights
 // $font-weight-normal: normal;
-// $font-weight-bold: bold;
+$font-weight-bold: 700;
 $font-weight-semibold: 600;
 $font-weight-heavy: 900;
 
@@ -130,7 +130,7 @@ $primary-color: #f34f2c;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
 $body-font-weight: $font-weight-semibold;
-$title-font-weight: $font-weight-heavy;
+$title-font-weight: $font-weight-bold;
 // $body-font-style: normal;
 
 // We use this to control font-smoothing
