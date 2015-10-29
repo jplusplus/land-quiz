@@ -87,7 +87,11 @@ $(document).ready(function() {
       // give either 0 or 1 answer randomly
       answerLog[key] = Math.round(Math.random()).toString();
     });
-    var posting = $.post("http://dialektapi.jplusplus.se/oracle/predict/", answerLog);
+    var posting = $.post({
+      url: "http://dialektapi.jplusplus.se/oracle/predict/", 
+      data: answerLog,
+      crossDomain: true
+    });
     posting.done(function(data) {
         console.log("Data Loaded: ");
         console.log(data);
