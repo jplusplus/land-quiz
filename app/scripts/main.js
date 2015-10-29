@@ -33,30 +33,36 @@ function updateQuestion (q) {
       class: 'select secondary button medium',
     })
     .html(v)
-    .appendTo($li);
+      .appendTo($li);
     $li.appendTo('#answers');
   });
 
-  // set up the answer button callback
+  // Set up the answer button callback
   $('#answers li a').click( function () {
-    console.log($(this).parent()[0].id);
-    // Record the current answer 
-    answerLog[currentQuestionId] = $(this).parent()[0].id.replace('answer-', '');
-    console.log(answerLog);
-    // Remove the last question from the questions array and present the next one
-    questions.shift();
-    var q = questions[0];
-    if (typeof q != 'undefined') {
-      // next question
-      updateQuestion(q);
-    } else {
-      // quiz finished
-      getResults(answerLog);
-    }
+    var $answer = $(this);
+    $('.question-card').animate({'opacity': 0}, 'fast', function () {
+      // Record the current answer 
+      answerLog[currentQuestionId] = $answer.parent()[0].id.replace('answer-', '');
+      console.log(answerLog);
+      // Remove the last question from the questions array and present the next one
+      questions.shift();
+      var q = questions[0];
+      if (typeof q != 'undefined') {
+        // next question
+        updateQuestion(q);
+      } else {
+        // quiz finished
+        getResults(answerLog);
+      }
+      // Fade elements back in
+      $('.question-card').animate({'opacity': 1}, 'fast');
+    });
   });
-}
+};
 
 function getResults(answers) {
+  // Show spinner for loading answers
+  $('.question-card').load('partials/loading-answers.html');
   var posting = $.ajax({
     type: 'POST',
     url: 'http://dialektapi.jplusplus.se/oracle/predict/',
@@ -95,7 +101,12 @@ $(document).ready(function() {
     });
     $('#questions-total').text = questions.length;
     $('#questions-current').text = "1";
-    updateQuestion(questions[0]);
+    // Load the HTML where the questions will be placed
+    $('.question-card').load('partials/question.html', function() {
+      // when loading is done, get the first question
+      // Fade out elements
+        updateQuestion(questions[0]);
+    });
   });
 
 
