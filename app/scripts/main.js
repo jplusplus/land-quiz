@@ -45,6 +45,35 @@ function updateQuestion (q) {
 
 }
 
+function getResults(answers) {
+  var posting = $.ajax({
+    type: 'POST',
+    url: 'http://dialektapi.jplusplus.se/oracle/predict/',
+    crossDomain: true,
+    data: JSON.stringify(answerLog),
+    dataType: 'json',
+    error: function (response, status, error) {
+      alert('POST failed.');
+    },
+    success: function(response, status, jqXHR) {
+      console.log(response);
+      var srcsets = [];
+      var variants = ["1x", "2x", "2.5x", "3x"];
+      variants.forEach( function(variant) {
+          srcsets.push(response.image[variant] + " " + variant);
+      });
+      for 
+      $('.question-card').empty().append(
+          $('<img>') 
+            .attr('src', response.image.src)
+            .attr('srcset', srcsets.join(","))
+            .attr('alt', response.image.alt)
+            .attr('title', response.image.title);
+      );
+    }
+  });
+}
+
 
 $(document).ready(function() {    
   var jsonPath = 'data/questions.json';
@@ -74,29 +103,17 @@ $(document).ready(function() {
       updateQuestion(q);
     } else {
       // quiz finished
-      var posting = $.post("http://dialektapi.jplusplus.se/oracle/predict/", answerLog);
-      posting.done(function(data) {
-          console.log("Data Loaded: ");
-          console.log(data);
-      });
+      getResults(answerLog);
     }
   });
 
   $('#results-button').click( function () {
     $.each( questions, function(key, c) {
       // give either 0 or 1 answer randomly
-      answerLog[key] = Math.round(Math.random()).toString();
+      answerLog[c.id] = Math.round(Math.random()).toString();
     });
-    var posting = $.post({
-      url: "http://dialektapi.jplusplus.se/oracle/predict/", 
-      data: answerLog,
-      crossDomain: true
-    });
-    posting.done(function(data) {
-        console.log("Data Loaded: ");
-        console.log(data);
-    });
-
+    getResults(answerLog);
+    
   });
 });
 
