@@ -46,95 +46,90 @@ $light-gray: #ccc;
 */
 
 #header {
-    & > div *:last-child {
-        padding-bottom: 1rem;
-        margin-bottom: 0;
-        background: transparent url('../images/slashbg.png') repeat-x 0 bottom;
+    div {
+      padding-top: 1rem;
+      h2 {
+        height: 160px;
+        margin: 0;
+        img { height: 100%; width: auto; }
         }
+      }
 }
 
 #main {
     .row {
-        padding: 1rem 0 0;
-        }
+      padding: 1rem 0 0;
+      }
     
     .question-card {    
-        .quiz-progress { margin-bottom: 0; }
-        
-        .question-explanation {
-          margin-bottom: 0.5rem;
-          strong { font-weight: 900; }
-          }
-            
-        ul#answers {
-                margin-left: 0;
-                list-style-type: none;
-                
-                li {
-                  font-size: 1rem;
-                  line-height: 1.5;
-                  }
-                
-                .split.button {
-                  width: 100%;
-                  margin-bottom: 1px;
-                  span {
-                    border: 0;
-                    &:before {
-                      border: none;
-                      content: "⚪";
-                      font-weight: normal;
-                      font-size: 2rem;
-                      line-height: 1.5;
-                      margin-left: 0.75rem;
-                      }
-                    }
-                  &:hover {
-                      background-color: #ccc;
-                    span {
-                      color: #f34f2c;
-                      @include transition(color .25s ease-out);
-                      }
-                    }
-
-                  &.left-icon {
-                    text-align: left;
-                    padding-left: 2.75rem;
-                    span { left: 0; }
-                    }
-                  }
-                
-                
-              li.selected .split.button span {
-                color: #E0582B;
-                @include transition(color 2s ease-out);
-                &:before {
-                  content: "⚫";
-                  }
-                }
-            }
-            
-        p.pagination a {
-            color: #999;
-            font-size: 1em;
-            font-weight: normal;
-            padding: 0.625rem 0;
-            @include transition(color .5s ease-out);
-            
-            &:hover { color: #333; }
-            
-            }
+      #quiz-progress {
+        color: #999;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+        span { font-weight: 700; }
         }
+      
+      #question-explanation {
+        margin-bottom: 1rem;
+        strong { color: #E0582B; }
+        }
+          
+      ul#answers {
+        margin-left: 0;
+        list-style-type: none;
+        
+        li {
+          font-size: 1rem;
+          line-height: 1.5;
+        
+          .button {
+            width: 100%;
+            &:hover {
+              background-color: #ccc;
+              span {
+                color: #f34f2c;
+                @include transition(color .25s ease-out);
+                }
+              }
+            }
+            
+          &.selected .button span {
+            color: #E0582B;
+            @include transition(color 2s ease-out);
+            }
+            
+          }
+        }
+          
+      p.pagination a {
+          color: #999;
+          font-size: 1em;
+          font-weight: normal;
+          padding: 0.625rem 0;
+          @include transition(color .5s ease-out);
+          
+          &:hover { color: #333; }
+          
+          }
+      }
 
 }
 
 
 #footer {
-  p {
-    i { 
-        font-size: 1rem;
-        margin-right: 0.5rem;
-        }
+  div {
+    h5 {
+      padding-top: 0.75rem;
+      background: transparent url('../images/slashbg.png') repeat-x 0 top;
+      }
+    p {
+      i { 
+          font-size: 1rem;
+          margin-right: 0.5rem;
+          }
+      }
     }
 }
 

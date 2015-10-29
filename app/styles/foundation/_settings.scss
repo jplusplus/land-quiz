@@ -92,10 +92,8 @@ $font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Roboto, Arial, 
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
-// $font-weight-normal: normal;
-$font-weight-bold: 700;
-$font-weight-semibold: 600;
-$font-weight-heavy: 900;
+$font-weight-normal: 600;
+$font-weight-bold: 900;
 
 // $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
@@ -129,7 +127,7 @@ $primary-color: #f34f2c;
 // $body-bg: $white;
 // $body-font-color: $jet;
 // $body-font-family: $font-family-sans-serif;
-$body-font-weight: $font-weight-semibold;
+$body-font-weight: $font-weight-normal;
 $title-font-weight: $font-weight-bold;
 // $body-font-style: normal;
 
@@ -251,7 +249,7 @@ $header-font-weight: $title-font-weight;
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
-$paragraph-font-weight: $font-weight-semibold;
+$paragraph-font-weight: $font-weight-normal;
 // $paragraph-font-size: 1rem;
 // $paragraph-line-height: 1.6;
 // $paragraph-margin-bottom: rem-calc(20);
@@ -460,7 +458,7 @@ $paragraph-font-weight: $font-weight-semibold;
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
 // $button-font-lrg: rem-calc(20);
-$button-font-weight: $font-weight-semibold;
+$button-font-weight: $font-weight-bold;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
