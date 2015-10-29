@@ -57,8 +57,18 @@ function getResults(answers) {
     },
     success: function(response, status, jqXHR) {
       console.log(response);
+      var srcsets = [];
+      var variants = ["1x", "2x", "2.5x", "3x"];
+      variants.forEach( function(variant) {
+          srcsets.push(response.image[variant] + " " + variant);
+      });
+      for 
       $('.question-card').empty().append(
-          $('<img>').attr('src', response.image.src)
+          $('<img>') 
+            .attr('src', response.image.src)
+            .attr('srcset', srcsets.join(","))
+            .attr('alt', response.image.alt)
+            .attr('title', response.image.title);
       );
     }
   });
