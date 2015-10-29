@@ -8,7 +8,7 @@ serve:
 	gulp serve
 
 deploy:
-	rsync --recursive --update --delete --verbose dist/ "dh:~/www/koizo.org/dialekt/"
+	rsync --recursive --delete --verbose dist/ "dh:~/www/koizo.org/dialekt/"
 
 clean:
 	rm -fr dist/
