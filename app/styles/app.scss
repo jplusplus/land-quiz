@@ -79,6 +79,8 @@ $light-gray: #ccc;
       ul#answers {
         margin-left: 0;
         list-style-type: none;
+        min-height: 10em;
+        background: red;
         
         li {
           font-size: 1rem;
@@ -86,6 +88,7 @@ $light-gray: #ccc;
         
           .button {
             width: 100%;
+            margin-bottom: 0.5rem;
             &:hover {
               background-color: #ccc;
               span {
@@ -114,17 +117,23 @@ $light-gray: #ccc;
           
           }
       }
-
+      
+      .gauge-loader:not(:required) {
+        background: #E0582B !important;
+        }
 }
 
 
 #footer {
   div {
+    padding-bottom: 1rem;
     h5 {
-      padding-top: 0.75rem;
+      padding-top: 1rem;
       background: transparent url('../images/slashbg.png') repeat-x 0 top;
       }
     p {
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
       i { 
           font-size: 1rem;
           margin-right: 0.5rem;
