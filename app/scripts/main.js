@@ -86,6 +86,7 @@ function getResults(answers) {
             .attr('alt', response.image.alt)
             .attr('title', response.image.title)
       );
+      $('.question-card img').wrap('<p/>');
     }
   });
 }
