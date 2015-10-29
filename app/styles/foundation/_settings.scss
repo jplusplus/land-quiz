@@ -93,6 +93,7 @@ $font-family-sans-serif: "Raleway", "Helvetica Neue", Helvetica, Roboto, Arial, 
 
 // We use these to define default font weights
 $font-weight-normal: 600;
+$font-weight-semibold: 700;
 $font-weight-bold: 900;
 
 // $white       : #FFFFFF;
@@ -444,6 +445,7 @@ $paragraph-font-weight: $font-weight-normal;
 // $button-tny: rem-calc(10);
 // $button-sml: rem-calc(14);
 // $button-med: rem-calc(16);
+$button-med: rem-calc(14);
 // $button-lrg: rem-calc(18);
 
 // We use this to control the display property.
@@ -457,6 +459,7 @@ $paragraph-font-weight: $font-weight-normal;
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
+$button-font-med: rem-calc(18);
 // $button-font-lrg: rem-calc(20);
 $button-font-weight: $font-weight-bold;
 // $button-font-align: center;
