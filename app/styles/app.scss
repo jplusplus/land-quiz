@@ -70,24 +70,23 @@ $light-gray: #ccc;
                 margin-left: 0;
                 list-style-type: none;
                 
+                li {
+                  font-size: 1rem;
+                  line-height: 1.5;
+                  }
+                
                 .split.button {
                   width: 100%;
                   margin-bottom: 1px;
                   span {
                     border: 0;
                     &:before {
-                      border: 0;
+                      border: none;
                       content: "⚪";
-                      display: inline-block;
-                      font-family: 'Raleway';
-                      font-size: 1.5rem;
-                      line-height: 1.85;
-                      margin-left: 1rem;
-                      font-style: normal;
-                      font-variant: normal;
-                      font-weight: 600;
-                      text-decoration: inherit;
-                      text-transform: none;
+                      font-weight: normal;
+                      font-size: 2rem;
+                      line-height: 1.5;
+                      margin-left: 0.75rem;
                       }
                     }
                   &:hover {
@@ -100,8 +99,7 @@ $light-gray: #ccc;
 
                   &.left-icon {
                     text-align: left;
-                    padding-left: 3rem;
-                    padding-right: 2rem;
+                    padding-left: 2.75rem;
                     span { left: 0; }
                     }
                   }
@@ -127,8 +125,9 @@ $light-gray: #ccc;
             
             }
         }
-    
+
 }
+
 
 #footer {
   p {
