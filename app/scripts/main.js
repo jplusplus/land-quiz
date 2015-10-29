@@ -36,12 +36,24 @@ function updateQuestion (q) {
     .appendTo($li);
     $li.appendTo('#answers');
   });
-  // set up answer click callbacks
-  $('#answers li').click( function () {
-    $('#answers li').removeClass('selected');
-    $(this).toggleClass('selected');
-  });
 
+  // set up the answer button callback
+  $('#answers li a').click( function () {
+    console.log($(this).parent()[0].id);
+    // Record the current answer 
+    answerLog[currentQuestionId] = $(this).parent()[0].id.replace('answer-', '');
+    console.log(answerLog);
+    // Remove the last question from the questions array and present the next one
+    questions.shift();
+    var q = questions[0];
+    if (typeof q != 'undefined') {
+      // next question
+      updateQuestion(q);
+    } else {
+      // quiz finished
+      getResults(answerLog);
+    }
+  });
 }
 
 function getResults(answers) {
@@ -86,25 +98,6 @@ $(document).ready(function() {
     updateQuestion(questions[0]);
   });
 
-  $('#next-button').click( function () {
-    if ($('#answers li.selected').length == 0) {
-      // Make sure we have a selected answer before going on
-      return
-    }
-    // Record the current answer 
-    answerLog[currentQuestionId] = $('#answers li.selected')[0].id.replace('answer-', '');
-    console.log(answerLog);
-    // Remove the last question from the questions array and present the next one
-    questions.shift();
-    var q = questions[0];
-    if (typeof q != 'undefined') {
-      // next question
-      updateQuestion(q);
-    } else {
-      // quiz finished
-      getResults(answerLog);
-    }
-  });
 
   $('#results-button').click( function () {
     $.each( questions, function(key, c) {
