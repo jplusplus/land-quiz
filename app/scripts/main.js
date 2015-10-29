@@ -23,7 +23,6 @@ function updateQuestion (q) {
   // Update answer counter
   $('#question-current').text(Object.keys(answerLog).length + 1);
   // Fill the elements with the new content
-  //$('#question-title').text(q.question);
   $('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
 
   // create and populate answer list
@@ -62,13 +61,12 @@ function getResults(answers) {
       variants.forEach( function(variant) {
           srcsets.push(response.image[variant] + " " + variant);
       });
-      for 
       $('.question-card').empty().append(
           $('<img>') 
             .attr('src', response.image.src)
             .attr('srcset', srcsets.join(","))
             .attr('alt', response.image.alt)
-            .attr('title', response.image.title);
+            .attr('title', response.image.title)
       );
     }
   });
@@ -76,10 +74,11 @@ function getResults(answers) {
 
 
 $(document).ready(function() {    
-  var jsonPath = 'data/questions.json';
+  var jsonPath = 'http://dialektapi.jplusplus.se/oracle/questions/';
   $.getJSON( jsonPath, function( data ) {
     // Go through all questions and store them in the array
-    $.each(data, function( key, c ) {
+    $.each(data.questions, function( key, c ) {
+      c.id = key;
       questions.push(c);
     });
     $('#questions-total').text = questions.length;
