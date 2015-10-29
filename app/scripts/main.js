@@ -31,9 +31,9 @@ function updateQuestion (q) {
   $.each(q.answers, function(index, v) {
     var $li = $('<li></li>').attr('id', 'answer-' + index);
     $('<a>', {
-      class: 'select left-icon secondary button split medium no-pip',
+      class: 'select secondary button medium',
     })
-    .html('<span></span> ' + v)
+    .html(v)
     .appendTo($li);
     $li.appendTo('#answers');
   });
@@ -103,3 +103,10 @@ $(document).ready(function() {
 
 // init Foundation
 // $(document).foundation();
+
+// Fallback SVG / PNG
+  if(!Modernizr.svg) {
+    $('img[src*="svg"]').attr('src', function () {
+        return $(this).attr('src').replace('.svg', '.png');
+    });
+  }
