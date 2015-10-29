@@ -5,7 +5,8 @@
     "foundation": "zurb/bower-foundation",
     "jquery": "~2.1.1",
     "modernizr": "~2.8.1",
-    "marked": "~0.3.5"
+    "marked": "~0.3.5",
+    "css-spinners": "~2.2.0"
   },
   "devDependencies": {
     "chai": "~3.3.0",
