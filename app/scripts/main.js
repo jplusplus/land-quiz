@@ -40,7 +40,7 @@ function updateQuestion (q) {
   // Set up the answer button callback
   $('#answers li a').click( function () {
     var $answer = $(this);
-    $('.question-card').animate({'opacity': 0}, 'fast', function () {
+    $('#question-card').animate({'opacity': 0}, 'fast', function () {
       // Record the current answer 
       answerLog[currentQuestionId] = $answer.parent()[0].id.replace('answer-', '');
       console.log(answerLog);
@@ -55,14 +55,14 @@ function updateQuestion (q) {
         getResults(answerLog);
       }
       // Fade elements back in
-      $('.question-card').animate({'opacity': 1}, 'fast');
+      $('#question-card').animate({'opacity': 1}, 'fast');
     });
   });
 };
 
 function getResults(answers) {
   // Show spinner for loading answers
-  $('.question-card').load('partials/loading-answers.html');
+  $('#question-card').load('partials/loading-answers.html');
   var posting = $.ajax({
     type: 'POST',
     url: 'http://dialektapi.jplusplus.se/oracle/predict/',
@@ -79,14 +79,14 @@ function getResults(answers) {
       variants.forEach( function(variant) {
           srcsets.push(response.image[variant] + " " + variant);
       });
-      $('.question-card').empty().append(
+      $('#question-card').empty().append(
           $('<img>') 
             .attr('src', response.image.src)
             .attr('srcset', srcsets.join(","))
             .attr('alt', response.image.alt)
             .attr('title', response.image.title)
       );
-      $('.question-card img').wrap('<p/>');
+      $('#question-card img').wrap('<p/>');
     }
   });
 }
@@ -103,7 +103,7 @@ $(document).ready(function() {
     $('#questions-total').text = questions.length;
     $('#questions-current').text = "1";
     // Load the HTML where the questions will be placed
-    $('.question-card').load('partials/question.html', function() {
+    $('#question-card').load('partials/question.html', function() {
       // when loading is done, get the first question
       // Fade out elements
         updateQuestion(questions[0]);
