@@ -99,7 +99,7 @@ function getResults(answers) {
       var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
       var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(response.image.src);
       $('.twitter-share-button').attr('href', twitter_url);
-      $('.facebook-share-button').attr('href', facebook_url);
+      $('.fb-share-button').attr('href', facebook_url);
 
 
     }
@@ -142,7 +142,7 @@ $(document).ready(function() {
       var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
       var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url);
       $('.twitter-share-button').attr('href', twitter_url);
-      $('.facebook-share-button').attr('href', facebook_url);
+      $('.fb-share-button').attr('href', facebook_url);
 
 
     });
