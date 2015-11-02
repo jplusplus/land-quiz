@@ -91,15 +91,15 @@ function getResults(answers) {
           console.log("Start over!");
           self.location.reload();
         });
+        // set share links
+        var share_url = "land.se/dialektoraklet";
+        var share_message = "The way I talk means I'm from " + response.area + "!"
+        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
+        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(response.image.src);
+        $('.twitter-share-button').attr('href', twitter_url);
+        $('.fb-share-button').attr('href', facebook_url);
       });
 
-      // set share links
-      var share_url = "land.se/dialektoraklet";
-      var share_message = "The way I talk means I'm from " + response.area + "!"
-      var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
-      var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(response.image.src);
-      $('.twitter-share-button').attr('href', twitter_url);
-      $('.fb-share-button').attr('href', facebook_url);
 
 
     }
