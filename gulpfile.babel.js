@@ -85,6 +85,9 @@ gulp.task('extras', () => {
   gulp.src('app/data/*.json')
     .pipe(gulp.dest('dist/data'));
 
+  gulp.src('app/partials/*.html')
+    .pipe(gulp.dest('dist/partials'));
+
   return gulp.src([
     'app/*.*',
     '!app/*.html'
@@ -159,6 +162,8 @@ gulp.task('wiredep', () => {
       ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app'));
+  gulp.src('partials/*.html')
+    .pipe(gulp.dest('app/partials'));
 });
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
