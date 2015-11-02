@@ -17,7 +17,6 @@ marked.setOptions({
   renderer: inlineRenderer,
 });
 
-
 function updateQuestion (q) {
   currentQuestionId = parseInt(q.id);
   // Update answer counter
@@ -58,6 +57,7 @@ function updateQuestion (q) {
       $('#question-card').animate({'opacity': 1}, 'fast');
     });
   });
+
 };
 
 function getResults(answers) {
@@ -88,10 +88,20 @@ function getResults(answers) {
               .attr('alt', response.image.alt)
               .attr('title', response.image.title)
         );
+        $('#question-card').prepend(
+            $('<h3>')
+              .text("Your result")
+            );
         $('#question-card img').wrap('<p/>');
+
+        $('#startover-button').click( function () {
+          console.log("Start over!");
+          self.location.reload();
+        });
       });
 
-
+      // set Twitter share link
+      // href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fghi.ifpri.org&amp;text=Global%20GHI%20scores%20have%20declined%20by%2027%25%20in%202015.%20See%20the%20interactive%20app%20%23GHI2015%20"
 
     }
   });
@@ -111,20 +121,26 @@ $(document).ready(function() {
     // Load the HTML where the questions will be placed
     $('#question-card').load('partials/question.html', function() {
       // when loading is done, get the first question
-      // Fade out elements
-        updateQuestion(questions[0]);
+      updateQuestion(questions[0]);
+
+      // set up buttons
+      $('#results-button').click( function () {
+        console.log(questions);
+        answerLog = {}
+        $.each( questions, function(key, c) {
+          // give either 0 or 1 answer randomly
+          answerLog[c.id] = Math.round(Math.random()).toString();
+        });
+        getResults(answerLog);
+      });
+      $('#startover-button').click( function () {
+        self.location.reload();
+      });
     });
-  });
 
 
-  $('#results-button').click( function () {
-    $.each( questions, function(key, c) {
-      // give either 0 or 1 answer randomly
-      answerLog[c.id] = Math.round(Math.random()).toString();
-    });
-    getResults(answerLog);
-    
   });
+
 });
 
 
