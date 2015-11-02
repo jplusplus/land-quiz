@@ -67,8 +67,14 @@ $light-gray: #ccc;
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-bottom: 0;
-        span { font-weight: 700; }
+        margin-bottom: 1rem;
+        span { }
+        }
+      
+      h3 {
+        font-size: 1.375rem;
+        line-height: 1.2;
+        margin: 0;
         }
       
       #question-explanation {
@@ -79,7 +85,7 @@ $light-gray: #ccc;
       ul#answers {
         margin-left: 0;
         list-style-type: none;
-        min-height: 15em;
+        min-height: 15rem;
         
         li {
           font-size: 1rem;
