@@ -81,18 +81,11 @@ function getResults(answers) {
       });
 
       $('#question-card').load('partials/result.html', function() {
-        $('#question-card').prepend(
-            $('<img>') 
-              .attr('src', response.image.src)
-              .attr('srcset', srcsets.join(","))
-              .attr('alt', response.image.alt)
-              .attr('title', response.image.title)
-        );
-        $('#question-card').prepend(
-            $('<h3>')
-              .text("Your result")
-            );
-        $('#question-card img').wrap('<p/>');
+        $('#result-image') 
+          .attr('src', response.image.src)
+          .attr('srcset', srcsets.join(","))
+          .attr('alt', response.image.alt)
+          .attr('title', response.image.title)
 
         $('#startover-button').click( function () {
           console.log("Start over!");
@@ -100,8 +93,14 @@ function getResults(answers) {
         });
       });
 
-      // set Twitter share link
-      // href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fghi.ifpri.org&amp;text=Global%20GHI%20scores%20have%20declined%20by%2027%25%20in%202015.%20See%20the%20interactive%20app%20%23GHI2015%20"
+      // set share links
+      var share_url = "land.se/dialektoraklet";
+      var share_message = "The way I talk means I'm from " + response.area + "!"
+      var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
+      var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(response.image.src);
+      $('.twitter-share-button').attr('href', twitter_url);
+      $('.facebook-share-button').attr('href', facebook_url);
+
 
     }
   });
@@ -136,6 +135,16 @@ $(document).ready(function() {
       $('#startover-button').click( function () {
         self.location.reload();
       });
+
+      // set share links
+      var share_url = "land.se/dialektoraklet";
+      var share_message = "Hey, check out this quiz!"
+      var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
+      var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url);
+      $('.twitter-share-button').attr('href', twitter_url);
+      $('.facebook-share-button').attr('href', facebook_url);
+
+
     });
 
 
