@@ -79,14 +79,20 @@ function getResults(answers) {
       variants.forEach( function(variant) {
           srcsets.push(response.image[variant] + " " + variant);
       });
-      $('#question-card').empty().append(
-          $('<img>') 
-            .attr('src', response.image.src)
-            .attr('srcset', srcsets.join(","))
-            .attr('alt', response.image.alt)
-            .attr('title', response.image.title)
-      );
-      $('#question-card img').wrap('<p/>');
+
+      $('#question-card').load('partials/result.html', function() {
+        $('#question-card').prepend(
+            $('<img>') 
+              .attr('src', response.image.src)
+              .attr('srcset', srcsets.join(","))
+              .attr('alt', response.image.alt)
+              .attr('title', response.image.title)
+        );
+        $('#question-card img').wrap('<p/>');
+      });
+
+
+
     }
   });
 }
