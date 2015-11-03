@@ -78,13 +78,11 @@ function getResults(answers) {
       alert('POST failed.');
     },
     success: function(response, status, jqXHR) {
-      console.log(response);
       var srcsets = [];
       var variants = ["1x", "2x", "2.5x", "3x"];
       variants.forEach( function(variant) {
           srcsets.push(response.image[variant] + " " + variant);
       });
-
       $('#question-card').load('partials/result.html', function() {
         $('#result-image') 
           .attr('src', response.image.src)
@@ -92,21 +90,37 @@ function getResults(answers) {
           .attr('alt', response.image.alt)
           .attr('title', response.image.title)
 
-        $('#startover-button').click( function () {
-          console.log("Start over!");
-          self.location.reload();
-        });
         // set share links
         var share_url = "land.se/dialektoraklet";
         var share_message = "The way I talk means I'm from " + response.area + "!"
         var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
         var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(response.image.src);
-        $('.twitter-share-button').attr('href', twitter_url);
-        $('.fb-share-button').attr('href', facebook_url);
+
+        // Feedback selections
+        $('#feedback-yes').click( function () {
+          $('#button-container').load('partials/result-yes.html', function() {
+            $('#startover-button').click( function () { self.location.reload(); });
+            $('.twitter-share-button').attr('href', twitter_url);
+            $('.fb-share-button').attr('href', facebook_url);
+          });
+        });
+
+        $('#feedback-no').click( function () {
+          $('#button-container').load('partials/result-no.html', function() {
+            $('#startover-button').click( function () { self.location.reload(); });
+            $('.region').click( function () {
+              console.log(this.id);
+              $('#button-container').load('partials/result-no-thanks.html', function() {
+                $('#startover-button').click( function () { self.location.reload(); });
+                $('.twitter-share-button').attr('href', twitter_url);
+                $('.fb-share-button').attr('href', facebook_url);
+              });
+            });
+          });
+        });
+
+
       });
-
-
-
     }
   });
 }
