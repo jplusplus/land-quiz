@@ -68,17 +68,13 @@ $light-gray: #ccc;
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-bottom: 1rem;
-        span { }
-        }
-      
-      h3 {
-        font-size: 1.375rem;
-        line-height: 1.2;
-        margin: 0;
         }
       
       #question-explanation {
         margin-bottom: 1rem;
+        font-size: 1.375rem;
+        line-height: 1.2;
+        margin: 0;
         strong { color: $primary-color; }
         }
           
@@ -131,10 +127,18 @@ $light-gray: #ccc;
       #button-container {
         margin-bottom: 0;
         
+        h3 {
+          font-weight: 700;
+          margin-bottom: 1rem;
+          }
+        
         p {
-          margin-bottom: 0;
-          &.share { text-align: left; }
-          &:nth-child(2) { text-align: right; }
+          margin-bottom: 1rem;
+          &.small-uncentered {
+            margin-bottom: 0;
+            &.share { text-align: left; }
+            &.restart { text-align: right; }
+            }
           }
           
         strong {
@@ -145,9 +149,12 @@ $light-gray: #ccc;
           margin-right: 0.25rem;
           }
         .button {
-            font-weight: 700;/*
+            font-weight: 700;
             margin-bottom: 0.25rem;
-            &.twitter-share-button {
+            &:first-child {
+              margin-right: 0.25rem;
+              }
+            /*&.twitter-share-button {
               margin-right: 0.25rem;
               margin-left: 0.25rem;
               }*/
