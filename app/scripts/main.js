@@ -17,7 +17,10 @@ marked.setOptions({
   renderer: inlineRenderer,
 });
 
+
 function updateQuestion (q) {
+  // Called to refresh the UI with the next question.
+
   currentQuestionId = parseInt(q.id);
   // Update answer counter
   $('#question-current').text(Object.keys(answerLog).length + 1);
@@ -61,6 +64,8 @@ function updateQuestion (q) {
 };
 
 function getResults(answers) {
+  // Called to get the result from the answers object.
+
   // Show spinner for loading answers
   $('#question-card').load('partials/loading-answers.html');
   var posting = $.ajax({
@@ -108,12 +113,12 @@ function getResults(answers) {
 
 
 $(document).ready(function() {    
-  var jsonPath = 'http://dialektapi.jplusplus.se/oracle/questions/';
+  var jsonPath = 'http://dialektapi.jplusplus.se/oracle/questions2/';
   $.getJSON( jsonPath, function( data ) {
     // Go through all questions and store them in the array
-    $.each(data.questions, function( key, c ) {
-      c.id = key;
-      questions.push(c);
+    $.each(data.questions, function(index, value) {
+      console.log(value);
+      questions.push(value);
     });
     $('#questions-total').text = questions.length;
     $('#questions-current').text = "1";
