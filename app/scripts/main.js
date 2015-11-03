@@ -5,6 +5,7 @@
 var questions = [];
 var answerLog = {};
 var currentQuestionId;
+var feedbackLatLon;
 
 
 // Disable Markdown paragraphs
@@ -97,7 +98,6 @@ function getResults(answers) {
 
         // Feedback selections
         $('#feedback-yes').click( function () {
-
           // Send answer to API
           var apiResponse = $.ajax({
             type: 'POST',
@@ -109,11 +109,9 @@ function getResults(answers) {
               console.log('Could not send answer to API.');
             },
             success: function(response, status, jqXHR) {
-              console.log('Answer sent!');
-              console.log(response);
+              console.log('Feedback sent!');
             }
             });
-
           $('#button-container').load('partials/result-yes.html', function() {
             $('#startover-button').click( function () { self.location.reload(); });
             $('.twitter-share-button').attr('href', twitter_url);
@@ -122,7 +120,39 @@ function getResults(answers) {
         });
 
         $('#feedback-no').click( function () {
+          // Remove header and image
+          $('#result-image').empty();
+          $('#question-explanation').remove();
           $('#button-container').load('partials/result-no.html', function() {
+            loadFeedbackMap();
+            $('#feedback-confirm-button').click( function () { 
+              console.log(feedbackLatLon);
+              // Send answer to API
+              var apiResponse = $.ajax({
+                type: 'POST',
+                url: 'http://dialektapi.jplusplus.se/oracle/correct/' + feedbackLatLon[0] + '/' + feedbackLatLon[1] + '/',
+                crossDomain: true,
+                data: JSON.stringify(answerLog),
+                dataType: 'json',
+                error: function (response, status, error) {
+                  console.log('Could not send answer to API.');
+                },
+                success: function(response, status, jqXHR) {
+                  console.log('Feedback sent!');
+                  console.log(response);
+                }
+              });
+            });
+          });
+        });
+      });
+    }
+  });
+}
+
+/*
+ * TODO: put this on the results-no-thanks callback
+
             $('#startover-button').click( function () { self.location.reload(); });
             $('.region').click( function () {
               console.log(this.id);
@@ -132,13 +162,53 @@ function getResults(answers) {
                 $('.fb-share-button').attr('href', facebook_url);
               });
             });
-          });
-        });
+*/
 
 
-      });
-    }
+function drawCircle(svg, x, y, size) {
+  // remove all circles
+  svg.selectAll("circle").remove();
+  svg.append("circle")
+      .attr('class', 'click-circle')
+      .attr("cx", x)
+      .attr("cy", y)
+      .attr("r", size);
+}
+
+function loadFeedbackMap() {
+  var width = 500,
+      height = 500;
+  var projection = d3.geo.transverseMercator()
+        .rotate([-20 + 30 / 60, -38 - 50 / 60]);
+  var path = d3.geo.path().projection(projection);
+  $('#feedback-map').empty();
+  var svg = d3.select("#feedback-map").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  d3.json("/data/sweden.json", function(error, world) {
+    if (error) throw error;
+    var units = topojson.feature(world.geo, world.geo.objects.collection);
+    projection
+        .scale(1)
+        .translate([0, 0]);
+    var b = path.bounds(units),
+        s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+        t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+    projection
+        .scale(s)
+        .translate(t);
+    svg.insert("path")
+        .datum(units)
+        .attr("class", "land")
+        .attr("d", path);
+    d3.selectAll("path").on("mousedown.log", function() {
+      var coords = d3.mouse(this);
+      drawCircle(svg, coords[0], coords[1], 8);
+      feedbackLatLon = projection.invert(coords);
+    });
   });
+  d3.select(self.frameElement).style("height", height + "px");
 }
 
 
@@ -176,13 +246,8 @@ $(document).ready(function() {
       var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url);
       $('.twitter-share-button').attr('href', twitter_url);
       $('.fb-share-button').attr('href', facebook_url);
-
-
     });
-
-
   });
-
 });
 
 

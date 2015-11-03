@@ -187,5 +187,21 @@ $light-gray: #ccc;
 }
 
 
+/* Map styling */
 
+#feedback-map {
+  cursor: crosshair;
+}
+
+.land {
+  stroke: #777;
+  stroke-opacity: .5;
+  stroke-width: .5px; 
+  fill: #222;
+  fill-opacity: .2;
+}
+
+.click-circle {
+  fill: #f34f2c;
+}
 
