@@ -84,7 +84,7 @@ function getResults(answers) {
           srcsets.push(response.image[variant] + " " + variant);
       });
       $('#question-card').load('partials/result.html', function() {
-        $('#result-image') 
+        $('#result-image img') 
           .attr('src', response.image.src)
           .attr('srcset', srcsets.join(","))
           .attr('alt', response.image.alt)

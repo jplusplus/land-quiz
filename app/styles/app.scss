@@ -119,11 +119,7 @@ $light-gray: #ccc;
         color: #999;
         font-size: 1rem;
         font-weight: normal;
-        padding: 0.625rem 0;
-        @include transition(color .5s ease-out);
-        
         &:hover { color: #333; }
-        
         }
       }
       
@@ -132,22 +128,31 @@ $light-gray: #ccc;
         !important;
         }
         
-      .share {
+      #button-container {
         margin-bottom: 0;
+        
+        p {
+          margin-bottom: 0;
+          &.share { text-align: left; }
+          &:nth-child(2) { text-align: right; }
+          }
+          
         strong {
           font-size: 0.875rem;
           font-weight: 600;
           text-transform: uppercase;
           color: #999;
-          display:  block;
-          margin-bottom: 0.5rem;
+          margin-right: 0.25rem;
           }
         .button {
-            font-weight: 700;
-            &.twitter-share-button { margin-right: 0.5rem; }
+            font-weight: 700;/*
+            margin-bottom: 0.25rem;
+            &.twitter-share-button {
+              margin-right: 0.25rem;
+              margin-left: 0.25rem;
+              }*/
             }
         i {
-          font-size: 1.15rem;
           line-height: 1;
           margin-right: 0.25rem;
           }
