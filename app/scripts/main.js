@@ -126,6 +126,8 @@ function getResults(answers) {
           $('#button-container').load('partials/result-no.html', function() {
             loadFeedbackMap();
             $('#feedback-confirm-button').click( function () { 
+              // confirm there is a selection
+              if ($('#feedback-confirm-button').hasClass('disabled')) { return; }
               console.log(feedbackLatLon);
               // Send answer to API
               var apiResponse = $.ajax({
@@ -142,6 +144,13 @@ function getResults(answers) {
                   console.log(response);
                 }
               });
+            $('#button-container').load('partials/result-no-thanks.html', function() {
+              $('#startover-button').click( function () { self.location.reload(); });
+              $('.twitter-share-button').attr('href', twitter_url);
+              $('.fb-share-button').attr('href', facebook_url);
+            });         
+
+
             });
           });
         });
@@ -206,6 +215,8 @@ function loadFeedbackMap() {
       var coords = d3.mouse(this);
       drawCircle(svg, coords[0], coords[1], 8);
       feedbackLatLon = projection.invert(coords);
+      // activate send button
+      $('#feedback-confirm-button').removeClass('disabled');
     });
   });
   d3.select(self.frameElement).style("height", height + "px");
