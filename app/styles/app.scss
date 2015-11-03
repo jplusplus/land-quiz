@@ -108,7 +108,7 @@ $light-gray: #ccc;
         }
         
       #result-image {
-        margin-bottom: 1rem;
+        margin-bottom: 0;
         }
           
       p.pagination a {
@@ -129,6 +129,7 @@ $light-gray: #ccc;
         
         h3 {
           font-weight: 700;
+          margin-top: 1rem;
           margin-bottom: 1rem;
           }
         
@@ -148,6 +149,7 @@ $light-gray: #ccc;
           color: #999;
           margin-right: 0.25rem;
           }
+          
         .button {
             font-weight: 700;
             margin-bottom: 0.25rem;
@@ -159,10 +161,47 @@ $light-gray: #ccc;
               margin-left: 0.25rem;
               }*/
             }
+ 
         i {
           line-height: 1;
           margin-right: 0.25rem;
           }
+          
+        .result-status {
+          color: #fff;
+          background-color: $primary-color;
+          padding: 0.65rem 0.65rem;
+          margin-top: 1px;
+          
+          span.feedback {
+            display: inline-block;
+            }
+          
+          span:first-child {
+            font-weight: 600;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+            }
+          
+          }
+          
+        a.feedback {
+          font-weight: 900;
+          background-color: #fff;
+          color: $primary-color;
+          margin-bottom: 0;
+          vertical-align: middle;
+          &:first-child {
+            margin-right: 0.25rem;
+            }
+          &:hover,
+          &:focus {
+            color: scale-color($primary-color, $lightness: -10%);
+            background-color: scale-color($primary-color, $lightness: 85%);
+            }
+          border-color: scale-color($primary-color, $lightness: 85%);
+          }
+        
         }
 }
 
