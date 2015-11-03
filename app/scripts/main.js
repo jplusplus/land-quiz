@@ -195,7 +195,7 @@ function loadFeedbackMap() {
       .attr("width", width)
       .attr("height", height);
 
-  d3.json("/data/sweden.json", function(error, world) {
+  d3.json("data/sweden.json", function(error, world) {
     if (error) throw error;
     var units = topojson.feature(world.geo, world.geo.objects.collection);
     projection
