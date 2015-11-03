@@ -44,8 +44,7 @@ function updateQuestion (q) {
     var $answer = $(this);
     $('#question-card').animate({'opacity': 0}, 'fast', function () {
       // Record the current answer 
-      answerLog[currentQuestionId] = $answer.parent()[0].id.replace('answer-', '');
-      console.log(answerLog);
+      answerLog[parseInt(currentQuestionId)] = $answer.parent()[0].id.replace('answer-', '');
       // Remove the last question from the questions array and present the next one
       questions.shift();
       var q = questions[0];
@@ -64,7 +63,7 @@ function updateQuestion (q) {
 };
 
 function getResults(answers) {
-  // Called to get the result from the answers object.
+  // Called to get the results from the answers object.
 
   // Show spinner for loading answers
   $('#question-card').load('partials/loading-answers.html');
@@ -75,7 +74,7 @@ function getResults(answers) {
     data: JSON.stringify(answerLog),
     dataType: 'json',
     error: function (response, status, error) {
-      alert('POST failed.');
+      console.log('Could not load result!');
     },
     success: function(response, status, jqXHR) {
       var srcsets = [];
@@ -90,7 +89,7 @@ function getResults(answers) {
           .attr('alt', response.image.alt)
           .attr('title', response.image.title)
 
-        // set share links
+        // set up share links
         var share_url = "land.se/dialektoraklet";
         var share_message = "The way I talk means I'm from " + response.area + "!"
         var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
@@ -98,6 +97,23 @@ function getResults(answers) {
 
         // Feedback selections
         $('#feedback-yes').click( function () {
+
+          // Send answer to API
+          var apiResponse = $.ajax({
+            type: 'POST',
+            url: 'http://dialektapi.jplusplus.se/oracle/confirm/2/',
+            crossDomain: true,
+            data: JSON.stringify(answerLog),
+            dataType: 'json',
+            error: function (response, status, error) {
+              console.log('Could not send answer to API.');
+            },
+            success: function(response, status, jqXHR) {
+              console.log('Answer sent!');
+              console.log(response);
+            }
+            });
+
           $('#button-container').load('partials/result-yes.html', function() {
             $('#startover-button').click( function () { self.location.reload(); });
             $('.twitter-share-button').attr('href', twitter_url);
@@ -131,7 +147,6 @@ $(document).ready(function() {
   $.getJSON( jsonPath, function( data ) {
     // Go through all questions and store them in the array
     $.each(data.questions, function(index, value) {
-      console.log(value);
       questions.push(value);
     });
     $('#questions-total').text = questions.length;
@@ -143,7 +158,6 @@ $(document).ready(function() {
 
       // set up buttons
       $('#results-button').click( function () {
-        console.log(questions);
         answerLog = {}
         $.each( questions, function(key, c) {
           // give either 0 or 1 answer randomly
