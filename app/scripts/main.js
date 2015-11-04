@@ -251,12 +251,13 @@ $(document).ready(function() {
       });
 
       // set share links
-      var share_url = "land.se/dialektoraklet";
-      var share_message = "Hey, check out this quiz!"
+      var share_url = "http://land.se/dialektoraklet";
+      var share_message = null; //FIXME
+      var share_picture = null; //FIXME
       var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
-      var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url);
+      var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&amp;picture=" + escape(share_picture);
       $('.twitter-share-button').attr('href', twitter_url);
-      $('.fb-share-button').attr('href', facebook_url);
+      $('.fb-share-button').attr('href', facebook_url).attr('target', '_blank');
     });
   });
 });
