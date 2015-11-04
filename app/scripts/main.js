@@ -170,8 +170,8 @@ function drawCircle(svg, x, y, size) {
 }
 
 function loadFeedbackMap() {
-  var width = 400,
-      height = 500;
+  var width = $('#feedback-map').width(),
+      height = $('#feedback-map').height();
   var projection = d3.geo.transverseMercator()
         .rotate([-20 + 30 / 60, -38 - 50 / 60]);
   var path = d3.geo.path().projection(projection);
