@@ -196,7 +196,7 @@ function loadFeedbackMap() {
     // a bit of cropping
     projection.translate([
         projection.translate()[0],
-        projection.translate()[1] + 270
+        projection.translate()[1] + 200
     ]);
     projection.scale(projection.scale() * 1.4);
 
