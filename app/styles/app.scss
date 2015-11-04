@@ -230,6 +230,18 @@ $light-gray: #ccc;
 
 #feedback-map {
   cursor: crosshair;
+  height: 32rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  background: #ddd;
+  text-align: center;
+  
+  svg {
+    height: 32rem;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    }
 }
 
 .land {
