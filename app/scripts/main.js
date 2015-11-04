@@ -159,21 +159,6 @@ function getResults(answers) {
   });
 }
 
-/*
- * TODO: put this on the results-no-thanks callback
-
-            $('#startover-button').click( function () { self.location.reload(); });
-            $('.region').click( function () {
-              console.log(this.id);
-              $('#button-container').load('partials/result-no-thanks.html', function() {
-                $('#startover-button').click( function () { self.location.reload(); });
-                $('.twitter-share-button').attr('href', twitter_url);
-                $('.fb-share-button').attr('href', facebook_url);
-              });
-            });
-*/
-
-
 function drawCircle(svg, x, y, size) {
   // remove all circles
   svg.selectAll("circle").remove();
@@ -185,7 +170,7 @@ function drawCircle(svg, x, y, size) {
 }
 
 function loadFeedbackMap() {
-  var width = 500,
+  var width = 400,
       height = 500;
   var projection = d3.geo.transverseMercator()
         .rotate([-20 + 30 / 60, -38 - 50 / 60]);
@@ -198,6 +183,7 @@ function loadFeedbackMap() {
   d3.json("data/map.topojson", function(error, world) {
     if (error) throw error;
     var units = topojson.feature(world, world.objects.regions);
+    // center and zoom to path bounds
     projection
         .scale(1)
         .translate([0, 0]);
@@ -207,6 +193,13 @@ function loadFeedbackMap() {
     projection
         .scale(s)
         .translate(t);
+    // a bit of cropping
+    projection.translate([
+        projection.translate()[0],
+        projection.translate()[1] + 270
+    ]);
+    projection.scale(projection.scale() * 1.4);
+
     svg.insert("path")
         .datum(units)
         .attr("class", "land")
