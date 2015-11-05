@@ -12,7 +12,7 @@ var feedbackLatLon;
 // https://stackoverflow.com/questions/27663203/markdown-in-js-without-enclosing-p/29559116#comment47272088_29559116
 var inlineRenderer = new marked.Renderer();
 inlineRenderer.paragraph = function(text) {
-    return text + '\n';
+  return text + '\n';
 };
 marked.setOptions({
   renderer: inlineRenderer,
@@ -23,11 +23,10 @@ function updateQuestion (q) {
   // Called to refresh the UI with the next question.
 
   currentQuestionId = parseInt(q.id);
-  // Update answer counter
+  // update answer counter
   $('#question-current').text(Object.keys(answerLog).length + 1);
-  // Fill the elements with the new content
+  // fill the elements with the new content
   $('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
-
   // create and populate answer list
   $('#answers').empty();
   $.each(q.answers, function(index, v) {
@@ -81,7 +80,7 @@ function getResults(answers) {
       var srcsets = [];
       var variants = ["1x", "2x", "2.5x", "3x"];
       variants.forEach( function(variant) {
-          srcsets.push(response.image[variant] + " " + variant);
+        srcsets.push(response.image[variant] + " " + variant);
       });
       $('#question-card').load('partials/result.html', function() {
         $('#result-image img') 
@@ -90,8 +89,8 @@ function getResults(answers) {
           .attr('alt', response.image.alt)
           .attr('title', response.image.title)
 
-        // set up share links
-        var share_url = "http://land.se/dialektoraklet";
+          // set up share links
+          var share_url = "http://land.se/dialektoraklet";
         var share_message = response.image.title + " Låt Dialektoraklet testa dig!";
         var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
         var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(response.image.src);
@@ -111,7 +110,7 @@ function getResults(answers) {
             success: function(response, status, jqXHR) {
               console.log('Feedback sent!');
             }
-            });
+          });
           $('#button-container').load('partials/result-yes.html', function() {
             $('#startover-button').click( function () { self.location.reload(); });
             $('.twitter-share-button').attr('href', twitter_url);
@@ -144,11 +143,11 @@ function getResults(answers) {
                   console.log(response);
                 }
               });
-            $('#button-container').load('partials/result-no-thanks.html', function() {
-              $('#startover-button').click( function () { self.location.reload(); });
-              $('.twitter-share-button').attr('href', twitter_url);
-              $('.fb-share-button').attr('href', facebook_url);
-            });         
+              $('#button-container').load('partials/result-no-thanks.html', function() {
+                $('#startover-button').click( function () { self.location.reload(); });
+                $('.twitter-share-button').attr('href', twitter_url);
+                $('.fb-share-button').attr('href', facebook_url);
+              });         
 
 
             });
@@ -163,36 +162,36 @@ function drawCircle(svg, x, y, size) {
   // remove all circles
   svg.selectAll("circle").remove();
   svg.append("circle")
-      .attr('class', 'click-circle')
-      .attr("cx", x)
-      .attr("cy", y)
-      .attr("r", size);
+    .attr('class', 'click-circle')
+    .attr("cx", x)
+    .attr("cy", y)
+    .attr("r", size);
 }
 
 function loadFeedbackMap() {
   var width = $('#feedback-map').width(),
-      height = $('#feedback-map').height();
+  height = $('#feedback-map').height();
   var projection = d3.geo.transverseMercator()
-        .rotate([-20 + 30 / 60, -38 - 50 / 60]);
+    .rotate([-20 + 30 / 60, -38 - 50 / 60]);
   var path = d3.geo.path().projection(projection);
   $('#feedback-map').empty();
   var svg = d3.select("#feedback-map").append("svg")
-      .attr("width", width)
-      .attr("height", height);
+    .attr("width", width)
+    .attr("height", height);
 
   d3.json("data/map.topojson", function(error, world) {
     if (error) throw error;
     var units = topojson.feature(world, world.objects.regions);
     // center and zoom to path bounds
     projection
-        .scale(1)
-        .translate([0, 0]);
+      .scale(1)
+      .translate([0, 0]);
     var b = path.bounds(units),
-        s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-        t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+    s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+    t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
     projection
-        .scale(s)
-        .translate(t);
+      .scale(s)
+      .translate(t);
     // a bit of cropping
     projection.translate([
         projection.translate()[0],
@@ -201,9 +200,9 @@ function loadFeedbackMap() {
     projection.scale(projection.scale() * 1.4);
 
     svg.insert("path")
-        .datum(units)
-        .attr("class", "land")
-        .attr("d", path);
+      .datum(units)
+      .attr("class", "land")
+      .attr("d", path);
     d3.selectAll("path").on("mousedown.log", function() {
       var coords = d3.mouse(this);
       drawCircle(svg, coords[0], coords[1], 8);
@@ -217,33 +216,38 @@ function loadFeedbackMap() {
 
 
 $(document).ready(function() {    
+  // init FastClick
+  $(function() {
+    FastClick.attach(document.body);
+  });
+
+  // Load questions and fill the page
   var jsonPath = 'http://dialektapi.jplusplus.se/oracle/questions2/';
   $.getJSON( jsonPath, function( data ) {
-    // Go through all questions and store them in the array
+    // go through all questions and store them in the question array
     $.each(data.questions, function(index, value) {
       questions.push(value);
     });
     $('#questions-total').text = questions.length;
     $('#questions-current').text = "1";
-    // Load the HTML where the questions will be placed
+    // load the HTML where the questions will be placed
     $('#question-card').load('partials/question.html', function() {
       // when loading is done, get the first question
       updateQuestion(questions[0]);
-
       // set up buttons
       $('#results-button').click( function () {
+        // debug results button, gives random 0 or 1 answers
         answerLog = {}
         $.each( questions, function(key, c) {
-          // give either 0 or 1 answer randomly
           answerLog[c.id] = Math.round(Math.random()).toString();
         });
         getResults(answerLog);
       });
       $('#startover-button').click( function () {
+        // starting over = reload page
         self.location.reload();
       });
-
-      // set share links
+      // set up share links
       var share_url = "http://land.se/dialektoraklet";
       var share_message = null; //FIXME
       var share_picture = null; //FIXME
@@ -255,13 +259,9 @@ $(document).ready(function() {
   });
 });
 
-
-// init Foundation
-// $(document).foundation();
-
-// Fallback SVG / PNG
-  if(!Modernizr.svg) {
-    $('img[src*="svg"]').attr('src', function () {
-        return $(this).attr('src').replace('.svg', '.png');
-    });
-  }
+// fallback for SVG / PNG
+if(!Modernizr.svg) {
+  $('img[src*="svg"]').attr('src', function () {
+    return $(this).attr('src').replace('.svg', '.png');
+  });
+}
