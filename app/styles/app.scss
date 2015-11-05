@@ -239,10 +239,8 @@ $light-gray: #ccc;
   height: 0;
   padding: 0;
   padding-bottom: calc(100% * 3 / 4);
-  box-sizing: content-box;*/
+  box-sizing: content-box;
   
-/*
-  background: #ddd;
   svg {
     height: 32rem;
     width: 100%;
@@ -262,5 +260,21 @@ $light-gray: #ccc;
 
 .click-circle {
   fill: #f34f2c;
+}
+
+/* Layout fixes for mobile
+*/
+
+@media #{$small-only} {
+
+  #main #question-card {
+  
+    ul#answers { min-height: 8rem;}
+  
+    #button-container {
+      strong { display: block; }
+      }
+    }
+
 }
 
