@@ -202,8 +202,9 @@ function loadFeedbackMap() {
     svg.insert("path")
       .datum(units)
       .attr("class", "land")
+      .attr("onclick", "") // iOS touch fix
       .attr("d", path);
-    d3.selectAll("path").on("mousedown.log", function() {
+    d3.selectAll("path").on("click", function() {
       var coords = d3.mouse(this);
       drawCircle(svg, coords[0], coords[1], 8);
       feedbackLatLon = projection.invert(coords);
