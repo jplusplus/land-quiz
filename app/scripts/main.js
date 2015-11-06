@@ -89,11 +89,12 @@ function getResults(answers) {
           .attr('alt', response.image.alt)
           .attr('title', response.image.title)
 
-          // set up share links
-          var share_url = "http://land.se/dialektoraklet";
-        var share_message = response.image.title + " Låt Dialektoraklet testa dig!";
+        // set up share links
+        var share_url = "http://land.se/dialektoraklet";
+        var share_text = response.share_text;
+        var share_image = response.share_image;
         var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + escape(share_message);
-        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(response.image.src);
+        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + escape(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(share_image);
 
         // Feedback selections
         $('#feedback-yes').click( function () {
