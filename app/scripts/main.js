@@ -87,7 +87,9 @@ function getResults(answers) {
           .attr('src', response.image.src)
           .attr('srcset', srcsets.join(","))
           .attr('alt', response.image.alt)
-          .attr('title', response.image.title)
+          .attr('title', response.image.title);
+        $('#result-image img')
+          .text(response.image.cred);
 
         // set up share links
         var share_url = "http://land.se/dialektoraklet";
