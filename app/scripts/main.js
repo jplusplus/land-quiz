@@ -93,10 +93,11 @@ function getResults(answers) {
 
         // set up share links
         var share_url = "http://land.se/dialektoraklet";
-        var share_text = encodeURIComponent(response.share_text);
+        var share_title = encodeURIComponent(response.share_title);
+        var share_text = encodeURIComponent("Låt dialektoraklet testa dig!");
         var share_image = response.share_image;
-        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_text;
-        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&amp;link=" + escape(share_url) + "&name=Dialektoraklet&description=" + share_text + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(share_image);
+        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_title + ". " + share_text;
+        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + share_title + "&description=" + share_text + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(share_image);
 
         // Feedback selections
         $('#feedback-yes').click( function () {
