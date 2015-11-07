@@ -178,3 +178,7 @@ gulp.task('deploy', function() {
   return gulp.src("./dist/**/*")
     .pipe(ghPages());
 });
+
+gulp.task("heroku:production", function(){
+    console.log('hello'); // the task does not need to do anything.
+});
