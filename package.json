@@ -5,7 +5,7 @@
   },
   "scripts": {
     "start": "gulp build",
-    "postinstall": "gulp"
+    "build": "gulp"
   },
   "dependencies": {
     "babel-core": "^6.1.2",
