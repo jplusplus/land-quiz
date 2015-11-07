@@ -281,3 +281,7 @@ $light-gray: #ccc;
 .error{
   color: red;
 }
+
+.no-js .jsonly {
+  display: none;
+}
