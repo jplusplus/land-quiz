@@ -88,7 +88,7 @@ function getResults(answers) {
           .attr('srcset', srcsets.join(","))
           .attr('alt', response.image.alt)
           .attr('title', response.image.title);
-        $('#result-image img')
+        $('#result-image figcaption')
           .text(response.image.cred);
 
         // set up share links
