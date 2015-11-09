@@ -248,14 +248,14 @@ $(document).ready(function() {
       // when loading is done, get the first question
       updateQuestion(questions[0]);
       // set up buttons
-      $('#results-button').click( function () {
+/*      $('#results-button').click( function () {
         // debug results button, gives random 0 or 1 answers
         answerLog = {}
         $.each( questions, function(key, c) {
           answerLog[c.id] = Math.round(Math.random()).toString();
         });
         getResults(answerLog);
-      });
+      });*/
       $('#startover-button').click( function () {
         // starting over = reload page
         self.location.reload();
