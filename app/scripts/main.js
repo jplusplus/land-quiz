@@ -100,8 +100,8 @@ function getResults(answers) {
         var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + share_title + "&description=" + share_text + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(share_image);
 
         // dynamically load D3.js
-        $.getScript("//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js", function () { console.log("D3 is loaded!"); });
-        $.getScript("/bower_components/topojson/topojson.js", function () { console.log("Topojson is loaded!"); });
+        $.getScript("//cdnjs.cloudflare.com/ajax/libs/d3/3.5.8/d3.min.js", function () { console.log("D3 is loaded!"); });
+        $.getScript("//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js", function () { console.log("Topojson is loaded!"); });
 
         // Feedback selections
         $('#feedback-yes').click( function () {
