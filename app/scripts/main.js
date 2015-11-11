@@ -25,6 +25,7 @@ function updateQuestion (q) {
   currentQuestionId = parseInt(q.id);
   // update answer counter
   $('#question-current').text(Object.keys(answerLog).length + 1);
+  $('#question-total').text(questions.length);
   // fill the elements with the new content
   $('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
   // create and populate answer list
