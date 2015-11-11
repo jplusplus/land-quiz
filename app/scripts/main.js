@@ -6,7 +6,7 @@ var questions = [];
 var answerLog = {};
 var currentQuestionId;
 var feedbackLatLon;
-
+var questionCard;
 
 // Disable Markdown paragraphs
 // https://stackoverflow.com/questions/27663203/markdown-in-js-without-enclosing-p/29559116#comment47272088_29559116
@@ -24,12 +24,12 @@ function updateQuestion (q) {
 
   currentQuestionId = parseInt(q.id);
   // update answer counter
-  $('#question-current').text(Object.keys(answerLog).length + 1);
-  $('#question-total').text(questions.length);
+  $(questionCard).find('#question-current').text(Object.keys(answerLog).length + 1);
+  $(questionCard).find('#question-total').text(questions.length);
   // fill the elements with the new content
-  $('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
+  $(questionCard).find('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
   // create and populate answer list
-  $('#answers').empty();
+  $(questionCard).find('#answers').empty();
   $.each(q.answers, function(index, v) {
     var $li = $('<li></li>').attr('id', 'answer-' + index);
     $('<a>', {
@@ -41,9 +41,9 @@ function updateQuestion (q) {
   });
 
   // Set up the answer button callback
-  $('#answers li a').click( function () {
+  $(questionCard).find('#answers li a').click( function () {
     var $answer = $(this);
-    $('#question-card').animate({'opacity': 0}, 'fast', function () {
+    $(questionCard).animate({'opacity': 0}, 'fast', function () {
       // Record the current answer 
       answerLog[parseInt(currentQuestionId)] = $answer.parent()[0].id.replace('answer-', '');
       // Remove the last question from the questions array and present the next one
@@ -57,7 +57,7 @@ function updateQuestion (q) {
         getResults(answerLog);
       }
       // Fade elements back in
-      $('#question-card').animate({'opacity': 1}, 'fast');
+      $(questionCard).animate({'opacity': 1}, 'fast');
     });
   });
 
@@ -67,7 +67,7 @@ function getResults(answers) {
   // Called to get the results from the answers object.
 
   // Show spinner for loading answers
-  $('#question-card').load('partials/loading-answers.html');
+  $(questionCard).load('partials/loading-answers.html');
   var posting = $.ajax({
     type: 'POST',
     url: 'http://dialektapi.jplusplus.se/oracle/predict/',
@@ -83,7 +83,7 @@ function getResults(answers) {
       variants.forEach( function(variant) {
         srcsets.push(response.image[variant] + " " + variant);
       });
-      $('#question-card').load('partials/result.html', function() {
+      $(questionCard).load('partials/result.html', function() {
         $('#result-image img') 
           .attr('src', response.image.src)
           .attr('srcset', srcsets.join(","))
@@ -229,6 +229,9 @@ $(document).ready(function() {
 
   $('html').removeClass('no-js').addClass('js');
 
+  /* cache dom node */
+  questionCard = $('#question-card');
+
   // init FastClick
   $(function() {
     FastClick.attach(document.body);
@@ -241,10 +244,9 @@ $(document).ready(function() {
     $.each(data.questions, function(index, value) {
       questions.push(value);
     });
-    $('#questions-total').text = questions.length;
-    $('#questions-current').text = "1";
+    $(questionCard).find('#questions-total').text = questions.length;
     // load the HTML where the questions will be placed
-    $('#question-card').load('partials/question.html', function() {
+    $(questionCard).load('partials/question.html', function() {
       // when loading is done, get the first question
       updateQuestion(questions[0]);
       // set up buttons
