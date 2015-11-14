@@ -7,6 +7,7 @@ var answerLog = {};
 var currentQuestionId;
 var feedbackLatLon;
 var questionCard;
+var totalQuestions;
 
 // Disable Markdown paragraphs
 // https://stackoverflow.com/questions/27663203/markdown-in-js-without-enclosing-p/29559116#comment47272088_29559116
@@ -25,7 +26,7 @@ function updateQuestion (q) {
   currentQuestionId = parseInt(q.id);
   // update answer counter
   $(questionCard).find('#question-current').text(Object.keys(answerLog).length + 1);
-  $(questionCard).find('#question-total').text(questions.length);
+  $(questionCard).find('#question-total').text(totalQuestions);
   // fill the elements with the new content
   $(questionCard).find('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
   // create and populate answer list
@@ -244,7 +245,8 @@ $(document).ready(function() {
     $.each(data.questions, function(index, value) {
       questions.push(value);
     });
-    $(questionCard).find('#questions-total').text = questions.length;
+    totalQuestions = questions.length;
+    $(questionCard).find('#questions-total').text = totalQuestions;
     // load the HTML where the questions will be placed
     $(questionCard).load('partials/question.html', function() {
       // when loading is done, get the first question
