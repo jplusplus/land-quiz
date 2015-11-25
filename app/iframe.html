@@ -1,15 +1,26 @@
 <!doctype html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Dialektoraklet</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+<html class="no-js" lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Dialektoraklet</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
   
-  <iframe src="index.html" width="670px" height="400" frameborder="0" allowfullscreen></iframe>
+  <!-- This works -->
+  <iframe src="test.html" width="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>
+  <!-- This doesn't. Why? -->
+  <!--<iframe src="index.html" width="100%" frameborder="0" scrolling="no" allowfullscreen></iframe>-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.1/iframeResizer.min.js"></script>
+  <script type="text/javascript">
+  iFrameResize({
+    log: true,
+    enablePublicMethods: true,
+    checkOrigin: false
+  });
+  </script>
  
-  </body>
-</html>
+</body>
