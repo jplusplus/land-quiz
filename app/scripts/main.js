@@ -20,6 +20,11 @@ marked.setOptions({
 });
 
 
+function buildFacebookShareUrl(share_url, share_title, share_message, share_picture){
+  return "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + encodeURIComponent(encodeURIComponent()) + "&description=" + encodeURIComponent(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(share_picture);
+}
+
+
 function updateQuestion (q) {
   // Called to refresh the UI with the next question.
 
@@ -95,11 +100,11 @@ function getResults(answers) {
 
         // set up share links
         var share_url = "http://land.se/dialektoraklet";
-        var share_title = encodeURIComponent(response.share_title);
-        var share_text = encodeURIComponent("Låt dialektoraklet testa dig!");
+        var share_text = "Låt dialektoraklet testa dig!";
         var share_image = response.share_image;
-        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_title + ". " + share_text;
-        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + share_title + "&description=" + share_text + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(share_image);
+        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + encodeURIComponent(response.share_title) + ". " + encodeURIComponent(share_text);
+        var facebook_url = buildFacebookShareUrl(share_url, response.share_title,
+                                                 share_text, share_image);
 
         // dynamically load D3.js
         $.getScript("//cdnjs.cloudflare.com/ajax/libs/d3/3.5.8/d3.min.js", function () { console.log("D3 is loaded!"); });
