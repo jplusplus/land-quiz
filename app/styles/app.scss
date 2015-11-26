@@ -124,6 +124,10 @@ $light-gray: #ccc;
             &:empty { background: transparent; }
             }
         }
+
+      #resend-button { 
+        font-weight: 700; 
+      }
           
       p.pagination a {
         color: #999;
