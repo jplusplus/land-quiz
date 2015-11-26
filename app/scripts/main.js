@@ -69,12 +69,18 @@ function getResults(answers) {
   $('#question-card').load('partials/loading-answers.html');
   var posting = $.ajax({
     type: 'POST',
-    url: 'http://dialektapi.jplusplus.se/oracle/predict/',
+    url: 'http://dialektapi.jplusplus.se/oracle/predict/dummytest',
     crossDomain: true,
     data: JSON.stringify(answerLog),
     dataType: 'json',
     error: function (response, status, error) {
-      console.log('Could not load result!');
+      // API error? show button to resend results
+      $('#question-card').load('partials/result-error.html', function() {
+        $('#resend-button').click( function () { 
+          $(this).addClass('disabled');
+          getResults(answers); 
+        });
+      });
     },
     success: function(response, status, jqXHR) {
       var srcsets = [];
