@@ -6,7 +6,8 @@ var questions = [];
 var answerLog = {};
 var currentQuestionId;
 var feedbackLatLon;
-
+var questionCard;
+var totalQuestions;
 
 // Disable Markdown paragraphs
 // https://stackoverflow.com/questions/27663203/markdown-in-js-without-enclosing-p/29559116#comment47272088_29559116
@@ -19,16 +20,22 @@ marked.setOptions({
 });
 
 
+function buildFacebookShareUrl(share_url, share_title, share_message, share_picture){
+  return "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + encodeURIComponent(encodeURIComponent()) + "&description=" + encodeURIComponent(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(share_picture);
+}
+
+
 function updateQuestion (q) {
   // Called to refresh the UI with the next question.
 
   currentQuestionId = parseInt(q.id);
   // update answer counter
-  $('#question-current').text(Object.keys(answerLog).length + 1);
+  $(questionCard).find('#question-current').text(Object.keys(answerLog).length + 1);
+  $(questionCard).find('#question-total').text(totalQuestions);
   // fill the elements with the new content
-  $('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
+  $(questionCard).find('#question-explanation').html('<h3>' + marked(q.explanation) + '</h3>');
   // create and populate answer list
-  $('#answers').empty();
+  $(questionCard).find('#answers').empty();
   $.each(q.answers, function(index, v) {
     var $li = $('<li></li>').attr('id', 'answer-' + index);
     $('<a>', {
@@ -40,9 +47,9 @@ function updateQuestion (q) {
   });
 
   // Set up the answer button callback
-  $('#answers li a').click( function () {
+  $(questionCard).find('#answers li a').click( function () {
     var $answer = $(this);
-    $('#question-card').animate({'opacity': 0}, 'fast', function () {
+    $(questionCard).animate({'opacity': 0}, 'fast', function () {
       // Record the current answer 
       answerLog[parseInt(currentQuestionId)] = $answer.parent()[0].id.replace('answer-', '');
       // Remove the last question from the questions array and present the next one
@@ -56,7 +63,7 @@ function updateQuestion (q) {
         getResults(answerLog);
       }
       // Fade elements back in
-      $('#question-card').animate({'opacity': 1}, 'fast');
+      $(questionCard).animate({'opacity': 1}, 'fast');
     });
   });
 
@@ -66,7 +73,7 @@ function getResults(answers) {
   // Called to get the results from the answers object.
 
   // Show spinner for loading answers
-  $('#question-card').load('partials/loading-answers.html');
+  $(questionCard).load('partials/loading-answers.html');
   var posting = $.ajax({
     type: 'POST',
     url: 'http://dialektapi.jplusplus.se/oracle/predict/',
@@ -88,7 +95,7 @@ function getResults(answers) {
       variants.forEach( function(variant) {
         srcsets.push(response.image[variant] + " " + variant);
       });
-      $('#question-card').load('partials/result.html', function() {
+      $(questionCard).load('partials/result.html', function() {
         $('#result-image img') 
           .attr('src', response.image.src)
           .attr('srcset', srcsets.join(","))
@@ -99,11 +106,11 @@ function getResults(answers) {
 
         // set up share links
         var share_url = "http://land.se/dialektoraklet";
-        var share_title = encodeURIComponent(response.share_title);
-        var share_text = encodeURIComponent("Låt dialektoraklet testa dig!");
+        var share_text = "Låt dialektoraklet testa dig!";
         var share_image = response.share_image;
-        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_title + ". " + share_text;
-        var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + share_title + "&description=" + share_text + "&redirect_uri=" + escape(share_url) + "&picture=http:" + escape(share_image);
+        var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + encodeURIComponent(response.share_title) + ". " + encodeURIComponent(share_text);
+        var facebook_url = buildFacebookShareUrl(share_url, response.share_title,
+                                                 share_text, share_image);
 
         // dynamically load D3.js
         $.getScript("//cdnjs.cloudflare.com/ajax/libs/d3/3.5.8/d3.min.js", function () { console.log("D3 is loaded!"); });
@@ -234,6 +241,9 @@ $(document).ready(function() {
 
   $('html').removeClass('no-js').addClass('js');
 
+  /* cache dom node */
+  questionCard = $('#question-card');
+
   // init FastClick
   $(function() {
     FastClick.attach(document.body);
@@ -246,10 +256,10 @@ $(document).ready(function() {
     $.each(data.questions, function(index, value) {
       questions.push(value);
     });
-    $('#questions-total').text = questions.length;
-    $('#questions-current').text = "1";
+    totalQuestions = questions.length;
+    $(questionCard).find('#questions-total').text = totalQuestions;
     // load the HTML where the questions will be placed
-    $('#question-card').load('partials/question.html', function() {
+    $(questionCard).load('partials/question.html', function() {
       // when loading is done, get the first question
       updateQuestion(questions[0]);
       // set up buttons
@@ -268,7 +278,7 @@ $(document).ready(function() {
       // set up share links
       var share_url = "http://land.se/dialektoraklet";
       var share_message = encodeURIComponent("Dialektoraklet vet var du kommer från!");
-      var share_picture = "/images/dialektoraklet-1280.png";
+      var share_picture = "http://s3.eu-central-1.amazonaws.com/dialekt/app/v1/images/dialektoraklet-1280.png";
       var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_message;
       var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=Dialektoraklet&description=" + share_message + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(share_picture);
       $('.twitter-share-button').attr('href', twitter_url);
