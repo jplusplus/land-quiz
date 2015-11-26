@@ -69,7 +69,7 @@ function getResults(answers) {
   $('#question-card').load('partials/loading-answers.html');
   var posting = $.ajax({
     type: 'POST',
-    url: 'http://dialektapi.jplusplus.se/oracle/predict/dummytest',
+    url: 'http://dialektapi.jplusplus.se/oracle/predict/',
     crossDomain: true,
     data: JSON.stringify(answerLog),
     dataType: 'json',
