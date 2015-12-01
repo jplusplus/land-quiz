@@ -21,7 +21,7 @@ marked.setOptions({
 
 
 function buildFacebookShareUrl(share_url, share_title, share_message, share_picture){
-  return "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=" + encodeURIComponent(encodeURIComponent()) + "&description=" + encodeURIComponent(share_message) + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(share_picture);
+  return "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + share_url + "&name=" + encodeURIComponent(share_title) + "&description=" + encodeURIComponent(share_message) + "&redirect_uri=" + share_url + "&picture=" + escape(share_picture);
 }
 
 
@@ -109,8 +109,9 @@ function getResults(answers) {
         var share_text = "Låt dialektoraklet testa dig!";
         var share_image = response.share_image;
         var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + encodeURIComponent(response.share_title) + ". " + encodeURIComponent(share_text);
-        var facebook_url = buildFacebookShareUrl(share_url, response.share_title,
-                                                 share_text, share_image);
+        var facebook_url = buildFacebookShareUrl(share_url, "Hur talar du? Testa dig själv!",
+                                                 "Orden du använder visar var du kommer ifrån. Men kanske präglas du av några år i barndomen när du bodde någon annanstans? Låt vårt dialektorakel testa dig.",
+                                                 share_image);
 
         // dynamically load D3.js
         $.getScript("//cdnjs.cloudflare.com/ajax/libs/d3/3.5.8/d3.min.js", function () { console.log("D3 is loaded!"); });
@@ -276,11 +277,14 @@ $(document).ready(function() {
         self.location.reload();
       });
       // set up share links
-      var share_url = "http://land.se/dialektoraklet";
-      var share_message = encodeURIComponent("Dialektoraklet vet var du kommer från!");
+      var share_url = "http%3A%2F%2Fland.se%2Fdialektoraklet%2F";
+      var share_message = encodeURIComponent("Hur talar du? Testa dig själv!");
       var share_picture = "http://s3.eu-central-1.amazonaws.com/dialekt/app/v1/images/dialektoraklet-1280.png";
       var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_message;
-      var facebook_url = "https://www.facebook.com/dialog/feed?app_id=1630419710512054&link=" + escape(share_url) + "&name=Dialektoraklet&description=" + share_message + "&redirect_uri=" + escape(share_url) + "&picture=" + escape(share_picture);
+      var facebook_url = buildFacebookShareUrl(share_url, "Hur talar du? Testa dig själv!",
+                                         "Orden du använder visar var du kommer ifrån. Men kanske präglas du av några år i barndomen när du bodde någon annanstans? Låt vårt dialektorakel testa dig.",
+                                         share_picture);
+
       $('.twitter-share-button').attr('href', twitter_url);
       $('.fb-share-button').attr('href', facebook_url).attr('target', '_blank');
     });
