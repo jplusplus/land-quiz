@@ -280,7 +280,7 @@ $(document).ready(function() {
       var share_url = "http%3A%2F%2Fland.se%2Fdialektoraklet%2F";
       var share_message = encodeURIComponent("Hur talar du? Testa dig själv!");
       var share_picture = "http://s3.eu-central-1.amazonaws.com/dialekt/app/v1/images/dialektoraklet-1280.png";
-      var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_message;
+      var twitter_url = "https://twitter.com/intent/tweet?url=" + escape(share_url) + "&text=" + share_message + "%20" + share_url;
       var facebook_url = buildFacebookShareUrl(share_url, "Hur talar du? Testa dig själv!",
                                          "Orden du använder visar var du kommer ifrån. Men kanske präglas du av några år i barndomen när du bodde någon annanstans? Låt vårt dialektorakel testa dig.",
                                          share_picture);
